@@ -5,6 +5,7 @@ using UnityEngine;
 public class PolarBear : MonoBehaviour
 {
     public Transform targetWaypoint = null;
+    public int currentIndexWaypoint = 0;
 
     public float minDistance = 0.1f;
 
@@ -13,7 +14,7 @@ public class PolarBear : MonoBehaviour
     public float rotationSpeed = 2.0f;
 
     public int chanceToDoAction = 80;
-    bool actionLauch = false;
+    public bool actionLauch = false;
 
     public bool needNewWaypoint = false;
 
@@ -39,11 +40,11 @@ public class PolarBear : MonoBehaviour
         {
             needNewWaypoint = true;
 
-            if (Random.Range(1, 100) <= chanceToDoAction)
+            /*if (Random.Range(1, 100) <= chanceToDoAction)
             {
                 // launch Action
                 actionLauch = true;
-            }
+            }*/
         }
     }
 
@@ -60,9 +61,15 @@ public class PolarBear : MonoBehaviour
 
         Vector3 directionToTarget = targetWaypoint.position - transform.position;
         Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
-
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, rotationStep);
 
         transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, movementStep);
+    }
+
+    public void UpdateWaypoint(Transform waypoint, int indexWaypoint)
+    {
+        currentIndexWaypoint = indexWaypoint;
+        targetWaypoint = waypoint;
+        needNewWaypoint = false;
     }
 }

@@ -928,7 +928,7 @@ MonoBehaviour:
   - {fileID: 1296598072}
   bearPrefab: {fileID: 1888887463319038067, guid: 5e88a325b9ae08f4fab2ea278862f6b8,
     type: 3}
-  distanceBetweenEachWaypoint: 50
+  distanceBetweenEachWaypoint: 25
   buildingLocationPossible:
   - {fileID: 297285577}
   buildingType: 00000000

@@ -1,7 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum Batiments
+{
+    HOUSE = 0,
+    SCHOOL = 1,
+    NONE
+};
 
 public class Game : MonoBehaviour
 { 
@@ -16,7 +24,7 @@ public class Game : MonoBehaviour
 
     public List<Transform> waypoints = new List<Transform>();
 
-    public List<PolarBear> polarBears = new List<PolarBear>();
+    public List<Bear> polarBears = new List<Bear>();
 
     public float distanceBetweenEachWaypoint = 50f;
 
@@ -62,27 +70,34 @@ public class Game : MonoBehaviour
         }
     }
 
-    void ChangeWayPoint(PolarBear bear)
+    void ChangeWayPoint(Bear bear)
     {
         while (bear.needNewWaypoint)
         {
-            int index = Random.Range(0, waypoints.Count);
+            int index = UnityEngine.Random.Range(0, waypoints.Count);
             float distance = Vector3.Distance(waypoints[index].position, bear.transform.position);
             if (index != bear.currentIndexWaypoint && distance <= distanceBetweenEachWaypoint)
                 bear.UpdateWaypoint(waypoints[index], index);
         }
     }
 
-    public bool Buy(int cost)
+    public void Buy(Batiments batiments)
     {
-        if(cost > 0 && cost <= Hearts)
+        int cost = 0;
+
+        switch(batiments)
+        {
+            case Batiments.HOUSE:
+                cost = 10;
+                break;
+            case Batiments.SCHOOL:
+                cost = 20;
+                break;
+        }
+
+        if (cost > 0 && cost <= Hearts)
         {
             Hearts -= cost;
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 }

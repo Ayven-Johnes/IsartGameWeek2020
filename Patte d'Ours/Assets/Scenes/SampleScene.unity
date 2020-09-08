@@ -994,6 +994,11 @@ PrefabInstance:
       propertyPath: Waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 1746126342}
+    - target: {fileID: 392016622739932608, guid: c56f893d93e2fee47a4f8647797b4fd0,
+        type: 3}
+      propertyPath: targetWaypoint
+      value: 
+      objectReference: {fileID: 1970296535}
     - target: {fileID: 392016622739932609, guid: c56f893d93e2fee47a4f8647797b4fd0,
         type: 3}
       propertyPath: m_Name

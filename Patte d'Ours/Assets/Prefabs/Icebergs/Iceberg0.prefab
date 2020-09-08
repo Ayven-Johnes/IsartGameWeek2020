@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2523481830540032163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9090292525412674619}
+  m_Layer: 0
+  m_Name: BuildLocation1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9090292525412674619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2523481830540032163}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.309, y: 0.52, z: -0.08}
+  m_LocalScale: {x: 0.19417477, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8067671283240381416}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6725970656491375462
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6725970656491375462}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.408, y: 0.63, z: -0.25}
+  m_LocalPosition: {x: -0.408, y: 0.63, z: -0.108}
   m_LocalScale: {x: 0.19417477, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8067671283240381416}
@@ -88,11 +118,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7478262515355667481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.712, y: 0, z: -1.651}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5.15, y: 1, z: 1}
   m_Children:
   - {fileID: 588170796219161181}
   - {fileID: 6979672063799635998}
+  - {fileID: 91105945063519518}
+  - {fileID: 9090292525412674619}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -171,3 +203,39 @@ MonoBehaviour:
   WaypointList:
   - {fileID: 588170796219161181}
   - {fileID: 6979672063799635998}
+  buildLocation:
+  - {fileID: 91105945063519518}
+  - {fileID: 9090292525412674619}
+  buildType: 0000000001000000
+  isAlreadyBuild: 0000
+  NumberOfBuildingPossible: 2
+--- !u!1 &8193555060603736182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 91105945063519518}
+  m_Layer: 0
+  m_Name: BuildLocation0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &91105945063519518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193555060603736182}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.413, y: 0.54, z: 0.01}
+  m_LocalScale: {x: 0.19417477, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8067671283240381416}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

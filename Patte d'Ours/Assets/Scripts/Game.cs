@@ -27,8 +27,18 @@ public class Game : MonoBehaviour
     public List<Transform> waypoints = new List<Transform>();
 
     public List<Bear> polarBears = new List<Bear>();
+    public GameObject bearPrefab = null;
 
     public float distanceBetweenEachWaypoint = 50f;
+
+    #region BuildingVars
+
+    public List<Transform> buildingLocationPossible = new List<Transform>();
+    public List<Batiments> buildingType = new List<Batiments>();
+    public List<bool> AlreadyBuild = new List<bool>();
+    public List<GameObject> buildingPrefab = new List<GameObject>();
+
+    #endregion
 
     #region IcebergGeneration
 
@@ -61,8 +71,8 @@ public class Game : MonoBehaviour
 
 
         // Debugging Logs
-        Debug.Log((int)Hearts);
-        Debug.Log(HeartsPerSecond);
+        //Debug.Log((int)Hearts);
+        //Debug.Log(HeartsPerSecond);
     }
 
     private void UpdateHearts()
@@ -93,8 +103,11 @@ public class Game : MonoBehaviour
         {
             int index = UnityEngine.Random.Range(0, waypoints.Count);
             float distance = Vector3.Distance(waypoints[index].position, bear.transform.position);
+
+            Debug.Log(index.ToString() + " Sur " + waypoints.Count);
+
             if (index != bear.currentIndexWaypoint && distance <= distanceBetweenEachWaypoint)
-                bear.UpdateWaypoint(waypoints[index], index);
+                bear.UpdateWaypoint(waypoints[index].position, index);
         }
     }
 
@@ -107,6 +120,7 @@ public class Game : MonoBehaviour
             case Batiments.HOUSE:
                 cost = 10;
                 GenerateOneIceberg();
+                GenerateHouse();
                 break;
             case Batiments.SCHOOL:
                 cost = 20;
@@ -137,7 +151,8 @@ public class Game : MonoBehaviour
             }
         }
 
-        GameObject newIceBerg = Instantiate(prefabForEachIceberg[index], icebergLocationPossible[index]);
+        GameObject newIceBerg = Instantiate(prefabForEachIceberg[index]);
+        newIceBerg.transform.position = icebergLocationPossible[index].position;
         GetInformationOfIceberg(newIceBerg);
 
         numberIcebergGenerate++;
@@ -151,5 +166,37 @@ public class Game : MonoBehaviour
         {
             waypoints.Add(point);
         }
+
+        for (int i = 0; i < ice.NumberOfBuildingPossible; i++)
+        {
+            buildingLocationPossible.Add(ice.buildLocation[i]);
+            buildingType.Add(ice.buildType[i]);
+            AlreadyBuild.Add(ice.isAlreadyBuild[i]);
+        }
+    }
+
+    void GenerateHouse()
+    {
+        int index = -1;
+        for (int i = 0; i < buildingType.Count; i++)
+        {
+            if (buildingType[i] == Batiments.HOUSE && !AlreadyBuild[i])
+            {
+                index = i;
+                AlreadyBuild[index] = true;
+                GameObject newHouse = Instantiate(buildingPrefab[index]);
+                newHouse.transform.position = buildingLocationPossible[index].position;
+
+
+                GameObject newBear = Instantiate(bearPrefab);
+                newBear.transform.position = waypoints[UnityEngine.Random.Range(0, waypoints.Count)].position;
+                polarBears.Add(newBear.GetComponent<Bear>());
+                //ChangeWayPoint(newBear.GetComponent<Bear>());
+                return;
+            }
+            else if (buildingType[i] != Batiments.HOUSE && !AlreadyBuild[i] && i == buildingType.Count)
+                return;
+        }
+
     }
 }

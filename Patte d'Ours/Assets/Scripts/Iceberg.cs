@@ -6,15 +6,9 @@ public class Iceberg : MonoBehaviour
 {
     public List<Transform> WaypointList = new List<Transform>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<Transform> buildLocation = new List<Transform>();
+    public List<Batiments> buildType = new List<Batiments>();
+    public List<bool> isAlreadyBuild = new List<bool>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int NumberOfBuildingPossible = 0;
 }

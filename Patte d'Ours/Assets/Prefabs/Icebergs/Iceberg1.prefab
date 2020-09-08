@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3281516803789453194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.31, y: 0, z: 3.67}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.97, y: 1, z: 8}
   m_Children:
   - {fileID: 1432641557232205363}
@@ -141,6 +141,10 @@ MonoBehaviour:
   WaypointList:
   - {fileID: 1432641557232205363}
   - {fileID: 693206078651231117}
+  buildLocation: []
+  buildType: 
+  isAlreadyBuild: 
+  NumberOfBuildingPossible: 0
 --- !u!1 &6877509105537800258
 GameObject:
   m_ObjectHideFlags: 0

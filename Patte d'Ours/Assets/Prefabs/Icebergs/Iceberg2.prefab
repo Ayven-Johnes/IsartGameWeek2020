@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860289639974462847}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.512, z: 0}
+  m_LocalPosition: {x: -0.347, y: 0.6, z: -0.072}
   m_LocalScale: {x: 0.81300807, y: 0.35714284, z: 0.3649635}
   m_Children: []
   m_Father: {fileID: 7093554504412677660}
@@ -58,8 +58,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7660445216665412077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.1, y: 0, z: 3.67}
-  m_LocalScale: {x: 1.23, y: 2.8, z: 2.74}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 1, z: 2}
   m_Children:
   - {fileID: 4714051987039043964}
   m_Father: {fileID: 0}
@@ -139,3 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaypointList:
   - {fileID: 4714051987039043964}
+  buildLocation: []
+  buildType: 
+  isAlreadyBuild: 
+  NumberOfBuildingPossible: 0

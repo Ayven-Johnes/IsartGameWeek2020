@@ -8,7 +8,7 @@ public class Bear : MonoBehaviour
     public Transform targetWaypoint = null;
     public int currentIndexWaypoint = 0;
 
-    public float minDistance = 0.1f;
+    public float minDistance = 0.2f;
 
     public float movementSpeed = 2.0f;
 
@@ -17,14 +17,13 @@ public class Bear : MonoBehaviour
     public int chanceToDoAction = 80;
     public bool actionLauch = false;
 
-    public bool needNewWaypoint = false;
+    public bool needNewWaypoint = true;
 
     NavMeshAgent agent = null;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.destination = targetWaypoint.position;
     }
 
     // Update is called once per frame
@@ -36,7 +35,7 @@ public class Bear : MonoBehaviour
         }
         else if (!needNewWaypoint)
         {
-            float distance = Vector3.Distance(transform.position, targetWaypoint.position);
+            float distance = Vector3.Distance(transform.position, agent.destination);
             CheckDistanceToWaypoint(distance);
         }
     }
@@ -60,11 +59,11 @@ public class Bear : MonoBehaviour
 
     }
 
-    public void UpdateWaypoint(Transform waypoint, int indexWaypoint)
+    public void UpdateWaypoint(Vector3 waypoint, int indexWaypoint)
     {
         currentIndexWaypoint = indexWaypoint;
-        targetWaypoint = waypoint;
         needNewWaypoint = false;
-        agent.destination = targetWaypoint.position;
+        if (agent)
+            agent.destination = waypoint;
     }
 }

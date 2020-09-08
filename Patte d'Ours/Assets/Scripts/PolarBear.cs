@@ -26,19 +26,10 @@ public class PolarBear : MonoBehaviour
         }
         else if (!needNewWaypoint)
         {
-            float movementStep = movementSpeed * Time.deltaTime;
-
-            float rotationStep = rotationSpeed * Time.deltaTime;
-
-            Vector3 directionToTarget = targetWaypoint.position - transform.position;
-            Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, rotationStep);
+            UpdateTransform();
 
             float distance = Vector3.Distance(transform.position, targetWaypoint.position);
             CheckDistanceToWaypoint(distance);
-
-            transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, movementStep);
         }
     }
 
@@ -59,5 +50,19 @@ public class PolarBear : MonoBehaviour
     void CheckActionFinish()
     {
 
+    }
+
+    void UpdateTransform()
+    {
+        float movementStep = movementSpeed * Time.deltaTime;
+
+        float rotationStep = rotationSpeed * Time.deltaTime;
+
+        Vector3 directionToTarget = targetWaypoint.position - transform.position;
+        Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, rotationStep);
+
+        transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, movementStep);
     }
 }

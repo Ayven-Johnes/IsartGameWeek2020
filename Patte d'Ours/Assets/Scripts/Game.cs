@@ -104,8 +104,6 @@ public class Game : MonoBehaviour
             int index = UnityEngine.Random.Range(0, waypoints.Count);
             float distance = Vector3.Distance(waypoints[index].position, bear.transform.position);
 
-            Debug.Log(index.ToString() + " Sur " + waypoints.Count);
-
             if (index != bear.currentIndexWaypoint && distance <= distanceBetweenEachWaypoint)
                 bear.UpdateWaypoint(waypoints[index].position, index);
         }
@@ -184,14 +182,13 @@ public class Game : MonoBehaviour
             {
                 index = i;
                 AlreadyBuild[index] = true;
-                GameObject newHouse = Instantiate(buildingPrefab[index]);
+                GameObject newHouse = Instantiate(buildingPrefab[0]);
                 newHouse.transform.position = buildingLocationPossible[index].position;
-
+                newHouse.transform.rotation = buildingLocationPossible[index].rotation;
 
                 GameObject newBear = Instantiate(bearPrefab);
                 newBear.transform.position = waypoints[UnityEngine.Random.Range(0, waypoints.Count)].position;
                 polarBears.Add(newBear.GetComponent<Bear>());
-                //ChangeWayPoint(newBear.GetComponent<Bear>());
                 return;
             }
             else if (buildingType[i] != Batiments.HOUSE && !AlreadyBuild[i] && i == buildingType.Count)

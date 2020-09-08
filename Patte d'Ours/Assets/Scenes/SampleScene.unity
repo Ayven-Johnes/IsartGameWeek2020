@@ -934,7 +934,7 @@ MonoBehaviour:
   buildingType: 00000000
   AlreadyBuild: 00
   buildingPrefab:
-  - {fileID: 4875547003354580667, guid: dd58b766d78232d428d6f736640022c3, type: 3}
+  - {fileID: 4411999904088183800, guid: 5b60744046c571a41af3075a780cb448, type: 3}
   - {fileID: 4339345578939590633, guid: 857da89d499663743b5dde8f03af79c2, type: 3}
   icebergLocationPossible:
   - {fileID: 82660324}

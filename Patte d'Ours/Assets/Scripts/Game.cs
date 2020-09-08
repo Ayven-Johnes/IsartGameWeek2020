@@ -1,7 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum Batiments
+{
+    HOUSE = 0,
+    SCHOOL = 1,
+    NONE
+};
 
 public class Game : MonoBehaviour
 { 
@@ -13,7 +21,6 @@ public class Game : MonoBehaviour
     private Text HeartsDisplay = null;
     [SerializeField]
     private Text HeartsPerSecDisplay = null;
-
 
     // Start is called before the first frame update
     void Start()
@@ -43,16 +50,23 @@ public class Game : MonoBehaviour
         PlayerPrefs.SetInt("Hearts", (int)Hearts);
     }
 
-    public bool Buy(int cost)
+    public void Buy(Batiments batiments)
     {
-        if(cost > 0 && cost <= Hearts)
+        int cost = 0;
+
+        switch(batiments)
+        {
+            case Batiments.HOUSE:
+                cost = 10;
+                break;
+            case Batiments.SCHOOL:
+                cost = 20;
+                break;
+        }
+
+        if (cost > 0 && cost <= Hearts)
         {
             Hearts -= cost;
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 }

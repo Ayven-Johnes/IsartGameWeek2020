@@ -33,6 +33,9 @@ public class TouchHandler : MonoBehaviour
     Touch previousTouch;
     float rotSpeed = 4f;
 
+    Vector3 previousMousePos = Vector3.zero;
+    bool isAlreadyClick = false;
+
     #endregion
 
     #region ZoomVars
@@ -40,7 +43,8 @@ public class TouchHandler : MonoBehaviour
     [SerializeField] Transform cameraTarget = null;
     [SerializeField] Transform cameraTransform = null;
 
-    public float ZoomSpeed = 0.0001f;
+    public float ZoomSpeedMobile = 0.0001f;
+    public float ZoomSpeedPC = 0.3f;
 
     #endregion
 
@@ -86,6 +90,51 @@ public class TouchHandler : MonoBehaviour
             UpdateTouchZoom();
         else if (Input.touchCount > 0)
             UpdateTouchSwipe();
+
+
+        CheckInputPC();
+    }
+
+    void CheckInputPC()
+    {
+        CheckZoomPCWithScroll();
+
+        CheckSwipeWithMouse();
+    }
+
+    void CheckZoomPCWithScroll()
+    {
+        Vector3 UnitVec = cameraTarget.position - cameraTransform.position;
+        length = UnitVec.magnitude;
+        UnitVec = Vector3.Normalize(UnitVec);
+
+        float zoomModifier = Input.mouseScrollDelta.y * ZoomSpeedPC;
+
+        text.text = "Zoom Modifier = " + zoomModifier.ToString();
+
+        if ((length < 50 && zoomModifier > 0) || (length > 15 && zoomModifier < 0))
+            cameraTransform.position = cameraTransform.position - zoomModifier * UnitVec;
+    }
+
+    void CheckSwipeWithMouse()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (!isAlreadyClick)
+            {
+                isAlreadyClick = true;
+                previousMousePos = Input.mousePosition;
+            }
+
+            float deltaX = previousMousePos.x - Input.mousePosition.x;
+            float rotY = -deltaX * Time.deltaTime * rotSpeed;
+
+            cameraTarget.eulerAngles = new Vector3(cameraTarget.eulerAngles.x, cameraTarget.eulerAngles.y + rotY);
+            previousMousePos = Input.mousePosition;
+        }
+        else
+            isAlreadyClick = false;
+
     }
 
     void UpdateTouchSwipe()
@@ -110,7 +159,7 @@ public class TouchHandler : MonoBehaviour
     {
         float deltaX = previousTouch.position.x - touch.position.x;
         float rotY = -deltaX * Time.deltaTime * rotSpeed;
-        text.text = rotY.ToString();
+
         cameraTarget.eulerAngles = new Vector3(cameraTarget.eulerAngles.x, cameraTarget.eulerAngles.y + rotY);
         previousTouch = touch;
     }
@@ -142,7 +191,7 @@ public class TouchHandler : MonoBehaviour
         touchesPrevPosDifference = (firstTouchPrevPos - secondTouchPrevPos).magnitude;
         touchesCurPosDifference = (firstTouch.position - secondTouch.position).magnitude;
 
-        return (firstTouch.deltaPosition - secondTouch.deltaPosition).magnitude * ZoomSpeed;
+        return (firstTouch.deltaPosition - secondTouch.deltaPosition).magnitude * ZoomSpeedMobile;
     }
 
     #endregion

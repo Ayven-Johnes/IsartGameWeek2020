@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
+using UnityEngine.Experimental.AI;
 
 public enum Batiments
 {
@@ -28,12 +30,27 @@ public class Game : MonoBehaviour
 
     public float distanceBetweenEachWaypoint = 50f;
 
+    #region IcebergGeneration
+
+    public List<Transform> icebergLocationPossible = new List<Transform>();
+    List<bool> icebergAlreadyGenerate = new List<bool>();
+
+    public List<GameObject> prefabForEachIceberg = new List<GameObject>();
+
+    int numberIcebergGenerate = 0;
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
         // Find the previous player's score inside Unity's player pref.
         Hearts = PlayerPrefs.GetInt("Hearts");
+
+        for (int i = 0; i <= icebergLocationPossible.Count; i++)
+        {
+            icebergAlreadyGenerate.Add(false);
+        }
     }
 
     // Update is called once per frame
@@ -89,6 +106,7 @@ public class Game : MonoBehaviour
         {
             case Batiments.HOUSE:
                 cost = 10;
+                GenerateOneIceberg();
                 break;
             case Batiments.SCHOOL:
                 cost = 20;
@@ -98,6 +116,40 @@ public class Game : MonoBehaviour
         if (cost > 0 && cost <= Hearts)
         {
             Hearts -= cost;
+        }
+    }
+
+    void GenerateOneIceberg()
+    {
+        if (numberIcebergGenerate >= icebergLocationPossible.Count)
+        {
+            return;
+        }
+
+        bool indexIsOk = false; int index = -1;
+        while (!indexIsOk)
+        {
+            index = UnityEngine.Random.Range(0, icebergLocationPossible.Count);
+            if (!icebergAlreadyGenerate[index])
+            {
+                indexIsOk = true;
+                icebergAlreadyGenerate[index] = true;
+            }
+        }
+
+        GameObject newIceBerg = Instantiate(prefabForEachIceberg[index], icebergLocationPossible[index]);
+        GetInformationOfIceberg(newIceBerg);
+
+        numberIcebergGenerate++;
+    }
+
+    void GetInformationOfIceberg(GameObject newIceberg)
+    {
+        Iceberg ice = newIceberg.GetComponent<Iceberg>();
+
+        foreach (Transform point in ice.WaypointList)
+        {
+            waypoints.Add(point);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Bear : MonoBehaviour
 {
@@ -18,6 +19,14 @@ public class Bear : MonoBehaviour
 
     public bool needNewWaypoint = false;
 
+    NavMeshAgent agent = null;
+
+    private void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.destination = targetWaypoint.position;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -27,8 +36,6 @@ public class Bear : MonoBehaviour
         }
         else if (!needNewWaypoint)
         {
-            UpdateTransform();
-
             float distance = Vector3.Distance(transform.position, targetWaypoint.position);
             CheckDistanceToWaypoint(distance);
         }
@@ -53,23 +60,11 @@ public class Bear : MonoBehaviour
 
     }
 
-    void UpdateTransform()
-    {
-        float movementStep = movementSpeed * Time.deltaTime;
-
-        float rotationStep = rotationSpeed * Time.deltaTime;
-
-        Vector3 directionToTarget = targetWaypoint.position - transform.position;
-        Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, rotationStep);
-
-        transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, movementStep);
-    }
-
     public void UpdateWaypoint(Transform waypoint, int indexWaypoint)
     {
         currentIndexWaypoint = indexWaypoint;
         targetWaypoint = waypoint;
         needNewWaypoint = false;
+        agent.destination = targetWaypoint.position;
     }
 }

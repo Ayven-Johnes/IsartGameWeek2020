@@ -10,9 +10,10 @@ public class TouchHandler : MonoBehaviour
 {
     //[SerializeField] CubeBehavior cubeControlled = null;
 
-    public Text text = null;
-    public Text text2 = null;
-    public Text text3 = null;
+    // To Delete after debug
+        public Text text = null;
+        public Text text2 = null;
+        public Text text3 = null;
 
     #region TouchVars
 

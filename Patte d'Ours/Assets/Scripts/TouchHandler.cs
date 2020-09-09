@@ -35,8 +35,9 @@ public class TouchHandler : MonoBehaviour
 
     #region ZoomVars
 
-    [SerializeField] Transform cameraTarget = null;
-    [SerializeField] Transform cameraTransform = null;
+    [SerializeField] Transform  cameraTarget = null;
+    [SerializeField] Transform  cameraTransform = null;
+    [SerializeField] Game       game = null;
 
     public float ZoomSpeedMobile = 0.0001f;
     public float ZoomSpeedPC = 0.3f;
@@ -115,6 +116,7 @@ public class TouchHandler : MonoBehaviour
         {
             if (!isAlreadyClick)
             {
+                game.Click();
                 isAlreadyClick = true;
                 previousMousePos = Input.mousePosition;
             }
@@ -139,6 +141,7 @@ public class TouchHandler : MonoBehaviour
             case TouchPhase.Began:
                 IsOnTouch = true;
                 previousTouch = touch;
+                game.Click();
                 break;
             case TouchPhase.Moved:
                 RotateCamera(ref touch);

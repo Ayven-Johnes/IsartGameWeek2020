@@ -47,6 +47,10 @@ public class ShopHandler : MonoBehaviour
     [SerializeField]
     private Button          icebergButton = null;
 
+    [SerializeField]
+    private AudioClip ButtonBuySound = null;
+
+    private AudioSource Source { get { return GetComponent<AudioSource>(); } }
     private int icebergCounter = 0;
 
     // Start is called before the first frame update
@@ -59,7 +63,6 @@ public class ShopHandler : MonoBehaviour
     {
         if (cat != currentCategory)
         {
-            Debug.Log("Not same category");
             foreach (Button bt in iglooButtons)
             {
                 bt.enabled = false;
@@ -77,7 +80,6 @@ public class ShopHandler : MonoBehaviour
             }
             icebergButton.enabled = false;
             icebergButton.gameObject.SetActive(false);
-
 
             switch (cat)
             {
@@ -142,12 +144,25 @@ public class ShopHandler : MonoBehaviour
 
     public void BuyIgloo(int i)
     {
-        BuyItems(iglooItems[i]);
+        Batiments bat = Batiments.NONE;
+        switch(i)
+        {
+            default:
+                break;
+        }
+
+        BuyItems(iglooItems[i], bat);
     }
 
     public void BuyDecoration(int i)
     {
-        BuyItems(decorationItems[i]);
+        Batiments bat = Batiments.NONE;
+        switch (i)
+        {
+            default:
+                break;
+        }
+        BuyItems(decorationItems[i], bat);
     }
 
     public void BuyIceberg()
@@ -155,16 +170,18 @@ public class ShopHandler : MonoBehaviour
         if (game.GetHearts < icebergCost[icebergCounter] || icebergCounter > 2)
             return;
 
+        Source.PlayOneShot(ButtonBuySound);
         game.GetHearts -= icebergCost[icebergCounter];
         icebergCounter++;
         //Faire pop iceberg
     }
 
-    private void BuyItems(ShopItems item)
+    private void BuyItems(ShopItems item, Batiments bat)
     {
-        if (game.GetHearts < item.Cost)
+        if (game.GetHearts < item.Cost || bat == Batiments.NONE)
             return;
 
+        Source.PlayOneShot(ButtonBuySound);
         game.GetHearts -= item.Cost;
 
         switch (item.Level)

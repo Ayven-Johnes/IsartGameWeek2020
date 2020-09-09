@@ -25,20 +25,22 @@ public class Game : MonoBehaviour
     private float   Hearts = 0;
 
     [SerializeField]
+    private int[] ClickGain = new int[4];
+
+    [SerializeField]
     private Text HeartsDisplay = null;
     [SerializeField]
     private Text HeartsPerSecDisplay = null;
 
     public List<Transform> waypoints = new List<Transform>();
-
     public List<Bear> polarBears = new List<Bear>();
     public GameObject bearPrefab = null;
     public float rangeSpawnBear = 30f;
-
     public float distanceBetweenEachWaypoint = 50f;
 
     public float GetHearts { get => Hearts; set => Hearts = value; }
     public int GetHPS { get => HeartsPerSecond; set => HeartsPerSecond = value; }
+
     #region BuildingVars
 
     public List<Transform> buildingLocationPossible = new List<Transform>();
@@ -79,8 +81,6 @@ public class Game : MonoBehaviour
 
 
         // Debugging Logs
-        //Debug.Log((int)Hearts);
-        //Debug.Log(HeartsPerSecond);
     }
 
     private void UpdateHearts()
@@ -115,11 +115,6 @@ public class Game : MonoBehaviour
             if (index != bear.currentIndexWaypoint && distance <= distanceBetweenEachWaypoint)
                 bear.UpdateWaypoint(waypoints[index].position, index);
         }
-    }
-
-    public void Buy(Batiments batiments, int level)
-    {
-
     }
 
     void GenerateOneIceberg()
@@ -198,5 +193,10 @@ public class Game : MonoBehaviour
                 return;
         }
 
+    }
+
+    public void Click()
+    {
+        Hearts += ClickGain[numberIcebergGenerate];
     }
 }

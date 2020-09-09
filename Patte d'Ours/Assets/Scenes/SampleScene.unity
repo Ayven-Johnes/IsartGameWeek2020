@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.4964143, b: 0.5748184, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 27a875d924c018847b20a09676fbdcad,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -2379,13 +2380,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: -0.10510085, y: -0.87783456, z: 0.40934092, w: -0.22538951}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: -208.8, z: 0}
 --- !u!1 &735413922
 GameObject:
   m_ObjectHideFlags: 0
@@ -2733,6 +2734,9 @@ MonoBehaviour:
   - {fileID: 2000650158286934470, guid: 4b83a9f0e864b03439a0f09e0fe53e58, type: 3}
   - {fileID: 4451639315903188839, guid: 97a029a7dd5e32c47aeeef64fbf0eafa, type: 3}
   - {fileID: 2383376741233259939, guid: c2d1385a8348d3244acd522b147933a0, type: 3}
+  - {fileID: 5089881967545840955, guid: 76830766a8c64e4409cf969ee37fa17b, type: 3}
+  - {fileID: 4134231406303257927, guid: f9c20cd3b9f65cb4887bdf2ea2e9d37e, type: 3}
+  - {fileID: 5680072209984968377, guid: 7e7a089e8abde5345b0ee64a24110016, type: 3}
   buildingList: []
   buildingTypesInList: 
   icebergLocationPossible:

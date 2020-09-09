@@ -9,7 +9,9 @@ using UnityEngine.Experimental.AI;
 public enum Batiments
 {
     CHEST,
-    BRIDGE,
+    BRIDGE1,
+    BRIDGE2,
+    BRIDGE3,
     FISHDRYER,
     IGLOO1,
     IGLOO2,
@@ -18,6 +20,9 @@ public enum Batiments
     SECHOIR1,
     SECHOIR2,
     SECHOIR3,
+    CHEST1,
+    CHEST2,
+    CHEST3,
     NONE
 };
 
@@ -167,6 +172,18 @@ public class Game : MonoBehaviour
             buildingLocationPossible.Add(ice.buildLocation[i]);
             buildingType.Add(ice.buildType[i]);
             AlreadyBuild.Add(ice.isAlreadyBuild[i]);
+
+            if (ice.buildType[i] == Batiments.BRIDGE1)
+            {
+                AlreadyBuild[i] = true;
+
+                GameObject newBridge = Instantiate(buildingPrefab[9]);
+                newBridge.transform.position = ice.buildLocation[i].position;
+                newBridge.transform.rotation = ice.buildLocation[i].rotation;
+
+                buildingList.Add(newBridge);
+                buildingTypesInList.Add(Batiments.BRIDGE1);
+            }
         }
     }
 
@@ -331,13 +348,116 @@ public class Game : MonoBehaviour
             if (buildingTypesInList[i] == Batiments.SECHOIR2)
             {
                 GameObject oldBuilding = buildingList[i];
-                GameObject newbuilding = Instantiate(buildingPrefab[4]);
+                GameObject newbuilding = Instantiate(buildingPrefab[5]);
 
                 newbuilding.transform.position = oldBuilding.transform.position;
                 newbuilding.transform.rotation = oldBuilding.transform.rotation;
 
                 buildingList[i] = newbuilding;
                 buildingTypesInList[i] = Batiments.SECHOIR3;
+
+                Destroy(oldBuilding);
+            }
+        }
+    }
+
+    public void GenerateChest1()
+    {
+        int index = -1;
+        for (int i = 0; i < buildingType.Count; i++)
+        {
+            if (buildingType[i] == Batiments.CHEST1 && !AlreadyBuild[i])
+            {
+                index = i;
+                AlreadyBuild[index] = true;
+                GameObject newSechoir = Instantiate(buildingPrefab[5]);
+                newSechoir.transform.position = buildingLocationPossible[index].position;
+                newSechoir.transform.rotation = buildingLocationPossible[index].rotation;
+
+                buildingList.Add(newSechoir);
+                buildingTypesInList.Add(Batiments.CHEST1);
+
+                return;
+            }
+            else if (buildingType[i] != Batiments.CHEST1 && !AlreadyBuild[i] && i == buildingType.Count)
+                return;
+        }
+    }
+
+    public void GenerateChest2()
+    {
+        for (int i = 0; i < buildingList.Count; i++)
+        {
+            if (buildingTypesInList[i] == Batiments.CHEST1)
+            {
+                GameObject oldBuilding = buildingList[i];
+                GameObject newbuilding = Instantiate(buildingPrefab[7]);
+
+                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.rotation = oldBuilding.transform.rotation;
+
+                buildingList[i] = newbuilding;
+                buildingTypesInList[i] = Batiments.CHEST2;
+
+                Destroy(oldBuilding);
+            }
+        }
+    }
+
+    public void GenerateChest3()
+    {
+        for (int i = 0; i < buildingList.Count; i++)
+        {
+            if (buildingTypesInList[i] == Batiments.CHEST2)
+            {
+                GameObject oldBuilding = buildingList[i];
+                GameObject newbuilding = Instantiate(buildingPrefab[7]);
+
+                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.rotation = oldBuilding.transform.rotation;
+
+                buildingList[i] = newbuilding;
+                buildingTypesInList[i] = Batiments.CHEST3;
+
+                Destroy(oldBuilding);
+            }
+        }
+    }
+
+    public void GenerateBridge2()
+    {
+        for (int i = 0; i < buildingList.Count; i++)
+        {
+            if (buildingTypesInList[i] == Batiments.BRIDGE1)
+            {
+                GameObject oldBuilding = buildingList[i];
+                GameObject newbuilding = Instantiate(buildingPrefab[10]);
+
+                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.rotation = oldBuilding.transform.rotation;
+
+                buildingList[i] = newbuilding;
+                buildingTypesInList[i] = Batiments.BRIDGE2;
+
+                Destroy(oldBuilding);
+            }
+        }
+    }
+
+    public void GenerateBridge3()
+    {
+        for (int i = 0; i < buildingList.Count; i++)
+        {
+            if (buildingTypesInList[i] == Batiments.BRIDGE2)
+            {
+                GameObject oldBuilding = buildingList[i];
+                GameObject newbuilding = Instantiate(buildingPrefab[11]);
+
+                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.rotation = oldBuilding.transform.rotation;
+
+                buildingList[i] = newbuilding;
+                buildingTypesInList[i] = Batiments.BRIDGE3;
 
                 Destroy(oldBuilding);
             }

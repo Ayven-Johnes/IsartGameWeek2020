@@ -28,6 +28,7 @@ public class Game : MonoBehaviour
 
     public List<Bear> polarBears = new List<Bear>();
     public GameObject bearPrefab = null;
+    public float rangeSpawnBear = 30f;
 
     public float distanceBetweenEachWaypoint = 50f;
 
@@ -187,7 +188,19 @@ public class Game : MonoBehaviour
                 newHouse.transform.rotation = buildingLocationPossible[index].rotation;
 
                 GameObject newBear = Instantiate(bearPrefab);
-                newBear.transform.position = waypoints[UnityEngine.Random.Range(0, waypoints.Count)].position;
+
+                bool indexIsOk = false; int j = -1;
+                while (!indexIsOk)
+                {
+                    j = UnityEngine.Random.Range(0, waypoints.Count);
+                    float distance = Vector3.Distance(waypoints[j].position, newHouse.transform.position);
+                    if (distance < rangeSpawnBear)
+                    {
+                        indexIsOk = true;
+                    }
+                }
+
+                newBear.transform.position = waypoints[j].position;
                 polarBears.Add(newBear.GetComponent<Bear>());
                 return;
             }

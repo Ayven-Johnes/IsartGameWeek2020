@@ -81,6 +81,23 @@ public class Game : MonoBehaviour
         {
             icebergAlreadyGenerate.Add(false);
         }
+
+        for (int i = 0; i < buildingType.Count; i++)
+        {
+            if (buildingType[i] == Batiments.BRIDGE1 && !AlreadyBuild[i])
+            {
+
+                AlreadyBuild[i] = true;
+                GameObject newHouse = Instantiate(buildingPrefab[9]);
+                newHouse.transform.position = buildingLocationPossible[i].position;
+                newHouse.transform.rotation = buildingLocationPossible[i].rotation;
+
+                buildingList.Add(newHouse);
+                buildingTypesInList.Add(Batiments.BRIDGE1);
+            }
+            else if (buildingType[i] != Batiments.BRIDGE1 && !AlreadyBuild[i] && i == buildingType.Count)
+                return;
+        }
     }
 
     // Update is called once per frame
@@ -375,7 +392,7 @@ public class Game : MonoBehaviour
             {
                 index = i;
                 AlreadyBuild[index] = true;
-                GameObject newSechoir = Instantiate(buildingPrefab[5]);
+                GameObject newSechoir = Instantiate(buildingPrefab[6]);
                 newSechoir.transform.position = buildingLocationPossible[index].position;
                 newSechoir.transform.rotation = buildingLocationPossible[index].rotation;
 
@@ -416,7 +433,7 @@ public class Game : MonoBehaviour
             if (buildingTypesInList[i] == Batiments.CHEST2)
             {
                 GameObject oldBuilding = buildingList[i];
-                GameObject newbuilding = Instantiate(buildingPrefab[7]);
+                GameObject newbuilding = Instantiate(buildingPrefab[8]);
 
                 newbuilding.transform.position = oldBuilding.transform.position;
                 newbuilding.transform.rotation = oldBuilding.transform.rotation;

@@ -33,11 +33,7 @@ public class Bear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (isIdle)
-        {
-            CheckActionFinish();
-        }
-        else */if (!needNewWaypoint && !isIdle)
+        if (!needNewWaypoint && !isIdle)
         {
             float distance = Vector3.Distance(transform.position, agent.destination);
             CheckDistanceToWaypoint(distance);
@@ -51,11 +47,7 @@ public class Bear : MonoBehaviour
             animator.SetBool("IsWalking", false);
             
             if (Random.Range(1, 100) <= 80)
-            {
-                // launch Action
                 isIdle = true;
-                Debug.Log("do action");
-            }
             else 
                 needNewWaypoint = true;
         }

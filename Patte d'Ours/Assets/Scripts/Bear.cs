@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class Bear : MonoBehaviour
 {
     public Transform targetWaypoint = null;
+
+    public Animator animator = null;
     public int currentIndexWaypoint = 0;
 
     public float minDistance = 0.2f;
@@ -15,9 +17,11 @@ public class Bear : MonoBehaviour
     public float rotationSpeed = 2.0f;
 
     public int chanceToDoAction = 80;
-    public bool actionLauch = false;
+    public bool isIdle = false;
 
     public bool needNewWaypoint = true;
+
+    public bool isWalking = false;
 
     NavMeshAgent agent = null;
 
@@ -29,11 +33,11 @@ public class Bear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (actionLauch)
+        /*if (isIdle)
         {
             CheckActionFinish();
         }
-        else if (!needNewWaypoint)
+        else */if (!needNewWaypoint && !isIdle)
         {
             float distance = Vector3.Distance(transform.position, agent.destination);
             CheckDistanceToWaypoint(distance);
@@ -44,19 +48,17 @@ public class Bear : MonoBehaviour
     {
         if (currentDistance <= minDistance)
         {
-            needNewWaypoint = true;
-
-            /*if (Random.Range(1, 100) <= chanceToDoAction)
+            animator.SetBool("IsWalking", false);
+            
+            if (Random.Range(1, 100) <= 80)
             {
                 // launch Action
-                actionLauch = true;
-            }*/
+                isIdle = true;
+                Debug.Log("do action");
+            }
+            else 
+                needNewWaypoint = true;
         }
-    }
-
-    void CheckActionFinish()
-    {
-
     }
 
     public void UpdateWaypoint(Vector3 waypoint, int indexWaypoint)
@@ -64,6 +66,9 @@ public class Bear : MonoBehaviour
         currentIndexWaypoint = indexWaypoint;
         needNewWaypoint = false;
         if (agent)
+        {
             agent.destination = waypoint;
+            animator.SetBool("IsWalking", true);
+        }
     }
 }

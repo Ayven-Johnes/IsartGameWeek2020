@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":1011.2491455078125,"y":83.26324462890625,"z":-1257.1513671875},"rotation":{"x":0.06296609342098236,"y":0.010774470865726471,"z":-0.0006684835534542799,"w":0.997986912727356},"size":220.00584411621095,"orthographic":false}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":-7.475403308868408,"y":-5.079684257507324,"z":2.3279623985290529},"rotation":{"x":-0.20906396210193635,"y":0.6580837965011597,"z":-0.19776253402233125,"w":-0.695837140083313},"size":7.741689682006836,"orthographic":false}
+>>>>>>> baptiste

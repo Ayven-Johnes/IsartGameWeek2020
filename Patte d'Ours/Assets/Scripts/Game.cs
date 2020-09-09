@@ -41,6 +41,7 @@ public class Game : MonoBehaviour
 
     public List<Bear> polarBears = new List<Bear>();
     public GameObject bearPrefab = null;
+    public GameObject babyBearPrefab = null;
     public float rangeSpawnBear = 30f;
 
     public float distanceBetweenEachWaypoint = 50f;
@@ -203,8 +204,12 @@ public class Game : MonoBehaviour
                 buildingList.Add(newHouse);
                 buildingTypesInList.Add(Batiments.IGLOO1);
 
-                GameObject newBear = Instantiate(bearPrefab);
-                
+                GameObject newBear = null;
+                if (UnityEngine.Random.Range(1, 100) < 25)
+                    newBear = Instantiate(babyBearPrefab);
+                else
+                    newBear = Instantiate(bearPrefab);
+
                 bool indexIsOk = false; int j = -1;
                 while (!indexIsOk)
                 {

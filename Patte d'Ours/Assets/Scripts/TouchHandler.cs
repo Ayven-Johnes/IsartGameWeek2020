@@ -10,11 +10,6 @@ public class TouchHandler : MonoBehaviour
 {
     //[SerializeField] CubeBehavior cubeControlled = null;
 
-    // To Delete after debug
-        public Text text = null;
-        public Text text2 = null;
-        public Text text3 = null;
-
     #region TouchVars
 
     bool IsOnTouch = false;
@@ -109,8 +104,6 @@ public class TouchHandler : MonoBehaviour
         UnitVec = Vector3.Normalize(UnitVec);
 
         float zoomModifier = Input.mouseScrollDelta.y * ZoomSpeedPC;
-
-        text.text = "Zoom Modifier = " + zoomModifier.ToString();
 
         if ((length < 50 && zoomModifier > 0) || (length > 15 && zoomModifier < 0))
             cameraTransform.position = cameraTransform.position - zoomModifier * UnitVec;

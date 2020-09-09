@@ -8,8 +8,13 @@ using UnityEngine.Experimental.AI;
 
 public enum Batiments
 {
-    HOUSE = 0,
-    SCHOOL = 1,
+    CHEST,
+    BRIDGE,
+    FISHDRYER,
+    IGLOO1,
+    IGLOO2,
+    IGLOO3,
+    ICEBERG,
     NONE
 };
 
@@ -32,6 +37,8 @@ public class Game : MonoBehaviour
 
     public float distanceBetweenEachWaypoint = 50f;
 
+    public float GetHearts { get => Hearts; set => Hearts = value; }
+    public int GetHPS { get => HeartsPerSecond; set => HeartsPerSecond = value; }
     #region BuildingVars
 
     public List<Transform> buildingLocationPossible = new List<Transform>();
@@ -110,26 +117,9 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void Buy(Batiments batiments)
+    public void Buy(Batiments batiments, int level)
     {
-        int cost = 0;
 
-        switch(batiments)
-        {
-            case Batiments.HOUSE:
-                cost = 10;
-                GenerateOneIceberg();
-                GenerateHouse();
-                break;
-            case Batiments.SCHOOL:
-                cost = 20;
-                break;
-        }
-
-        if (cost > 0 && cost <= Hearts)
-        {
-            Hearts -= cost;
-        }
     }
 
     void GenerateOneIceberg()
@@ -179,7 +169,7 @@ public class Game : MonoBehaviour
         int index = -1;
         for (int i = 0; i < buildingType.Count; i++)
         {
-            if (buildingType[i] == Batiments.HOUSE && !AlreadyBuild[i])
+            if (buildingType[i] == Batiments.IGLOO1 && !AlreadyBuild[i])
             {
                 index = i;
                 AlreadyBuild[index] = true;
@@ -204,7 +194,7 @@ public class Game : MonoBehaviour
                 polarBears.Add(newBear.GetComponent<Bear>());
                 return;
             }
-            else if (buildingType[i] != Batiments.HOUSE && !AlreadyBuild[i] && i == buildingType.Count)
+            else if (buildingType[i] != Batiments.IGLOO1 && !AlreadyBuild[i] && i == buildingType.Count)
                 return;
         }
 

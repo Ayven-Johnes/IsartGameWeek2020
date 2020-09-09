@@ -15,6 +15,9 @@ public class MenuSwipper : MonoBehaviour, IDragHandler, IEndDragHandler
 
     private bool canUp = true;
 
+    [SerializeField]
+    private ItemSwiper Swiper = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,16 +47,16 @@ public class MenuSwipper : MonoBehaviour, IDragHandler, IEndDragHandler
                 canUp = false;
             }
 
-            StartCoroutine(SmoothMove(transform.position, newLocation, easing));
+            StartCoroutine(SmoothMove(transform.position, newLocation, easing, Swiper));
             Location = newLocation;
         }
         else
         {
-            StartCoroutine(SmoothMove(transform.position, Location, easing));
+            StartCoroutine(SmoothMove(transform.position, Location, easing, Swiper));
         }
     }
 
-    IEnumerator SmoothMove(Vector3 startPos, Vector3 endPos, float seconds)
+    IEnumerator SmoothMove(Vector3 startPos, Vector3 endPos, float seconds, ItemSwiper it)
     {
         float t = 0f;
         while( t <= 1.0)
@@ -62,5 +65,6 @@ public class MenuSwipper : MonoBehaviour, IDragHandler, IEndDragHandler
             transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0f, 1.0f, t));
             yield return null;
         }
+        it.Setup();
     }
 }

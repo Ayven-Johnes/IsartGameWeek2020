@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.4964143, b: 0.5748184, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 27a875d924c018847b20a09676fbdcad,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -2379,13 +2380,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: -0.10510085, y: -0.87783456, z: 0.40934092, w: -0.22538951}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: -208.8, z: 0}
 --- !u!1 &735413922
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,9 +2677,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e220f2516180204d963bfab59b69507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  text2: {fileID: 0}
-  text3: {fileID: 0}
   length: 0
   cameraTarget: {fileID: 972260638}
   cameraTransform: {fileID: 963194228}
@@ -2727,8 +2725,20 @@ MonoBehaviour:
   buildingType: 00000000
   AlreadyBuild: 00
   buildingPrefab:
-  - {fileID: 4411999904088183800, guid: 5b60744046c571a41af3075a780cb448, type: 3}
-  - {fileID: 4339345578939590633, guid: 857da89d499663743b5dde8f03af79c2, type: 3}
+  - {fileID: 7680391113372364155, guid: 02abe2d32317c3f49894710b9aaa5ef1, type: 3}
+  - {fileID: 1661843435419842784, guid: b6651aa35b4b7a34e86c3f0a276c5e4a, type: 3}
+  - {fileID: 2594596048423405801, guid: ee35eeb8987f4364197510e61d114e8d, type: 3}
+  - {fileID: 8453327914896876302, guid: 2aac6c2ffba049047aa66e7f20dcad8c, type: 3}
+  - {fileID: 3754897444185047884, guid: 2d5c61471914fa64cbbeaebb2ea27c5a, type: 3}
+  - {fileID: 6238623962660430520, guid: fc2c13206eaf8454eb229ce1243f0276, type: 3}
+  - {fileID: 2000650158286934470, guid: 4b83a9f0e864b03439a0f09e0fe53e58, type: 3}
+  - {fileID: 4451639315903188839, guid: 97a029a7dd5e32c47aeeef64fbf0eafa, type: 3}
+  - {fileID: 2383376741233259939, guid: c2d1385a8348d3244acd522b147933a0, type: 3}
+  - {fileID: 5089881967545840955, guid: 76830766a8c64e4409cf969ee37fa17b, type: 3}
+  - {fileID: 4134231406303257927, guid: f9c20cd3b9f65cb4887bdf2ea2e9d37e, type: 3}
+  - {fileID: 5680072209984968377, guid: 7e7a089e8abde5345b0ee64a24110016, type: 3}
+  buildingList: []
+  buildingTypesInList: 
   icebergLocationPossible:
   - {fileID: 82660324}
   - {fileID: 1613001054}

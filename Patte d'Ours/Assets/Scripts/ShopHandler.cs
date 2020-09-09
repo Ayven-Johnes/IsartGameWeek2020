@@ -157,7 +157,8 @@ public class ShopHandler : MonoBehaviour
 
         game.GetHearts -= icebergCost[icebergCounter];
         icebergCounter++;
-        //Faire pop iceberg
+
+        game.GenerateOneIceberg();
     }
 
     private void BuyItems(ShopItems item)

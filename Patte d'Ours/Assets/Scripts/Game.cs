@@ -15,6 +15,9 @@ public enum Batiments
     IGLOO2,
     IGLOO3,
     ICEBERG,
+    SECHOIR1,
+    SECHOIR2,
+    SECHOIR3,
     NONE
 };
 
@@ -45,6 +48,9 @@ public class Game : MonoBehaviour
     public List<Batiments> buildingType = new List<Batiments>();
     public List<bool> AlreadyBuild = new List<bool>();
     public List<GameObject> buildingPrefab = new List<GameObject>();
+
+    public List<GameObject> buildingList = new List<GameObject>();
+    public List<Batiments> buildingTypesInList = new List<Batiments>();
 
     #endregion
 
@@ -122,7 +128,7 @@ public class Game : MonoBehaviour
 
     }
 
-    void GenerateOneIceberg()
+    public void GenerateOneIceberg()
     {
         if (numberIcebergGenerate >= icebergLocationPossible.Count)
         {
@@ -164,7 +170,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    void GenerateHouse()
+    public void GenerateIgloo1()
     {
         int index = -1;
         for (int i = 0; i < buildingType.Count; i++)
@@ -177,8 +183,11 @@ public class Game : MonoBehaviour
                 newHouse.transform.position = buildingLocationPossible[index].position;
                 newHouse.transform.rotation = buildingLocationPossible[index].rotation;
 
-                GameObject newBear = Instantiate(bearPrefab);
+                buildingList.Add(newHouse);
+                buildingTypesInList.Add(Batiments.IGLOO1);
 
+                GameObject newBear = Instantiate(bearPrefab);
+                
                 bool indexIsOk = false; int j = -1;
                 while (!indexIsOk)
                 {
@@ -197,6 +206,141 @@ public class Game : MonoBehaviour
             else if (buildingType[i] != Batiments.IGLOO1 && !AlreadyBuild[i] && i == buildingType.Count)
                 return;
         }
+    }
 
+    public void GenerateIgloo2()
+    {
+        for (int i = 0; i < buildingList.Count; i++)
+        {
+            if (buildingTypesInList[i] == Batiments.IGLOO1)
+            {
+                GameObject oldBuilding = buildingList[i];
+                GameObject newbuilding = Instantiate(buildingPrefab[1]);
+
+                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.rotation = oldBuilding.transform.rotation;
+
+                buildingList[i] = newbuilding;
+                buildingTypesInList[i] = Batiments.IGLOO2;
+
+                Destroy(oldBuilding);
+
+                GameObject newBear = Instantiate(bearPrefab);
+
+                bool indexIsOk = false; int j = -1;
+                while (!indexIsOk)
+                {
+                    j = UnityEngine.Random.Range(0, waypoints.Count);
+                    float distance = Vector3.Distance(waypoints[j].position, newbuilding.transform.position);
+                    if (distance < rangeSpawnBear)
+                    {
+                        indexIsOk = true;
+                    }
+                }
+
+                newBear.transform.position = waypoints[j].position;
+                polarBears.Add(newBear.GetComponent<Bear>());
+            }
+        }
+    }
+
+    public void GenerateIgloo3()
+    {
+        for (int i = 0; i < buildingList.Count; i++)
+        {
+            if (buildingTypesInList[i] == Batiments.IGLOO2)
+            {
+                GameObject oldBuilding = buildingList[i];
+                GameObject newbuilding = Instantiate(buildingPrefab[2]);
+
+                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.rotation = oldBuilding.transform.rotation;
+
+                buildingList[i] = newbuilding;
+                buildingTypesInList[i] = Batiments.IGLOO3;
+
+                Destroy(oldBuilding);
+
+                GameObject newBear = Instantiate(bearPrefab);
+
+                bool indexIsOk = false; int j = -1;
+                while (!indexIsOk)
+                {
+                    j = UnityEngine.Random.Range(0, waypoints.Count);
+                    float distance = Vector3.Distance(waypoints[j].position, newbuilding.transform.position);
+                    if (distance < rangeSpawnBear)
+                    {
+                        indexIsOk = true;
+                    }
+                }
+
+                newBear.transform.position = waypoints[j].position;
+                polarBears.Add(newBear.GetComponent<Bear>());
+
+            }
+        }
+    }
+
+    public void GenerateSechoir1()
+    {
+        int index = -1;
+        for (int i = 0; i < buildingType.Count; i++)
+        {
+            if (buildingType[i] == Batiments.SECHOIR1 && !AlreadyBuild[i])
+            {
+                index = i;
+                AlreadyBuild[index] = true;
+                GameObject newSechoir = Instantiate(buildingPrefab[3]);
+                newSechoir.transform.position = buildingLocationPossible[index].position;
+                newSechoir.transform.rotation = buildingLocationPossible[index].rotation;
+
+                buildingList.Add(newSechoir);
+                buildingTypesInList.Add(Batiments.SECHOIR1);
+
+                return;
+            }
+            else if (buildingType[i] != Batiments.SECHOIR1 && !AlreadyBuild[i] && i == buildingType.Count)
+                return;
+        }
+    }
+
+    public void GenerateSechoir2()
+    {
+        for (int i = 0; i < buildingList.Count; i++)
+        {
+            if (buildingTypesInList[i] == Batiments.SECHOIR1)
+            {
+                GameObject oldBuilding = buildingList[i];
+                GameObject newbuilding = Instantiate(buildingPrefab[4]);
+
+                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.rotation = oldBuilding.transform.rotation;
+
+                buildingList[i] = newbuilding;
+                buildingTypesInList[i] = Batiments.SECHOIR2;
+
+                Destroy(oldBuilding);
+            }
+        }
+    }
+
+    public void GenerateSechoir3()
+    {
+        for (int i = 0; i < buildingList.Count; i++)
+        {
+            if (buildingTypesInList[i] == Batiments.SECHOIR2)
+            {
+                GameObject oldBuilding = buildingList[i];
+                GameObject newbuilding = Instantiate(buildingPrefab[4]);
+
+                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.rotation = oldBuilding.transform.rotation;
+
+                buildingList[i] = newbuilding;
+                buildingTypesInList[i] = Batiments.SECHOIR3;
+
+                Destroy(oldBuilding);
+            }
+        }
     }
 }

@@ -169,7 +169,7 @@ public class Game : MonoBehaviour
         int index = -1;
         for (int i = 0; i < buildingType.Count; i++)
         {
-            if (buildingType[i] == Batiments.HOUSE && !AlreadyBuild[i])
+            if (buildingType[i] == Batiments.IGLOO1 && !AlreadyBuild[i])
             {
                 index = i;
                 AlreadyBuild[index] = true;
@@ -194,7 +194,7 @@ public class Game : MonoBehaviour
                 polarBears.Add(newBear.GetComponent<Bear>());
                 return;
             }
-            else if (buildingType[i] != Batiments.HOUSE && !AlreadyBuild[i] && i == buildingType.Count)
+            else if (buildingType[i] != Batiments.IGLOO1 && !AlreadyBuild[i] && i == buildingType.Count)
                 return;
         }
 

@@ -2730,8 +2730,8 @@ MonoBehaviour:
   - {fileID: 1613001054}
   - {fileID: 317249867}
   prefabForEachIceberg:
-  - {fileID: 844994318615528897, guid: c739a03fd902d7046b682e7c5679b5d4, type: 3}
-  - {fileID: 105483665348296043, guid: dfd826ba030432d4eafb8c013c86b8db, type: 3}
+  - {fileID: 7478262515355667481, guid: 5b6d9924293177a49aa833e804ee318e, type: 3}
+  - {fileID: 3281516803789453194, guid: 3561b86fc19982a40979fbd2d1f5f3b6, type: 3}
   - {fileID: 7660445216665412077, guid: 998b6254820b8ad4697bef1056c737df, type: 3}
 --- !u!1 &891251931
 GameObject:

@@ -180,9 +180,12 @@ public class Game : MonoBehaviour
     {
         Iceberg ice = newIceberg.GetComponent<Iceberg>();
 
-        foreach (Transform point in ice.WaypointList)
+        if (ice.WaypointList.Count != 0)
         {
-            waypoints.Add(point);
+            foreach (Transform point in ice.WaypointList)
+            {
+                waypoints.Add(point);
+            }
         }
 
         for (int i = 0; i < ice.NumberOfBuildingPossible; i++)

@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 449
     height: 573
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -71,10 +71,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 881, y: 492}
+  m_MinSize: {x: 906, y: 492}
   m_MaxSize: {x: 16006, y: 14042}
   vertical: 0
-  controlID: 121
+  controlID: 117
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: InspectorWindow
+  m_Name: NavMeshEditorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -94,14 +94,14 @@ MonoBehaviour:
     y: 0
     width: 389
     height: 947
-  m_MinSize: {x: 276, y: 71}
+  m_MinSize: {x: 301, y: 381}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 17}
+  m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 17}
   - {fileID: 14}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -121,8 +121,8 @@ MonoBehaviour:
     y: 0
     width: 390
     height: 573
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -292,8 +292,8 @@ MonoBehaviour:
     y: 0
     width: 692
     height: 573
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -456,21 +456,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Props/Terrain
+    - Assets/Prefabs/Icebergs
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Props/Terrain
+  - Assets/Prefabs/Icebergs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\bapti\OneDrive\Documents\Travail\IsartGameWeek2020\Patte
     d'Ours
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 19}
-    m_SelectedIDs: a2540000
-    m_LastClickedID: 21666
-    m_ExpandedIDs: 00000000285200003a520000425200004a5200009a54000000ca9a3b
+    scrollPos: {x: 0, y: 7}
+    m_SelectedIDs: 4c520000
+    m_LastClickedID: 21068
+    m_ExpandedIDs: 00000000285200003a520000425200004a52000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -623,21 +623,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: b4dfffffbce9ffff6afbffff8833000024340000703400008e340000
+      m_ExpandedIDs: f8f1ffff6afbffffe8330000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Iceberg_4
+        m_OriginalName: Iceberg_4
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -3592
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 5}
       m_SearchString: 
@@ -683,9 +683,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.4670591, y: 0.790696, z: 6.7886686}
+    m_Target: {x: 60.740402, y: -2.5169032, z: -34.9715}
     speed: 2
-    m_Value: {x: -1.6100206, y: -0.06649481, z: 0.28885955}
+    m_Value: {x: 60.740402, y: -2.5169032, z: -34.9715}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -731,13 +731,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.008234211, y: 0.9853837, z: -0.1628743, w: -0.049682077}
+    m_Target: {x: 0.08424439, y: 0.8587432, z: -0.14990515, w: 0.48274246}
     speed: 2
-    m_Value: {x: -0.008234026, y: 0.9853615, z: -0.16287063, w: -0.04968096}
+    m_Value: {x: 0.084966294, y: 0.8584965, z: -0.15118945, w: 0.48260382}
   m_Size:
-    m_Target: 1.1118765
+    m_Target: 81.23704
     speed: 2
-    m_Value: 1.5253963
+    m_Value: 77.73879
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -834,20 +834,20 @@ MonoBehaviour:
       y: 21
       width: 447
       height: 531
-    m_Scale: {x: 0.2875, y: 0.2875}
-    m_Translation: {x: 223.5, y: 265.5}
+    m_Scale: {x: 0.2765625, y: 0.2765625}
+    m_Translation: {x: 223.5, y: 265.49997}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -777.3913
-      y: -923.4783
-      width: 1554.7826
-      height: 1846.9565
+      x: -808.13556
+      y: -959.9999
+      width: 1616.2711
+      height: 1919.9999
     m_MinimalGUI: 1
-  m_defaultScale: 0.2875
+  m_defaultScale: 0.2765625
   m_LastWindowPixelSize: {x: 447, y: 552}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1

@@ -153,10 +153,10 @@ public class ShopHandler : MonoBehaviour
         //BuyItems(decorationItems[i]);
         if (tmp == 0)
         {
-            game.GenerateIgloo1();
+            game.GenerateOneIceberg();
         }
         else if (tmp == 1)
-            game.GenerateIgloo2();
+            game.GenerateOneIceberg();
 
         Debug.Log("buy item 1");
         tmp++;

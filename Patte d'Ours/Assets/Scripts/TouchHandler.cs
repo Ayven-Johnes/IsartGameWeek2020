@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class TouchHandler : MonoBehaviour
 {
-    //[SerializeField] CubeBehavior cubeControlled = null;
+    public MenuSwipper menu = null;
 
     #region TouchVars
 
@@ -52,32 +52,12 @@ public class TouchHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckTouch();
-        CheckTimer();
+        if (menu.canUp)
+            CheckTouch();
 
         Vector3 UnitVec = cameraTarget.position - cameraTransform.position;
         length = UnitVec.magnitude;
     }
-
-    #region TimerFunction
-
-    void CheckTimer()
-    {
-        if (IsOnTouch)
-            TouchDurationTimer();
-    }
-
-    void TouchDurationTimer()
-    {
-        m_touchDuration += Time.deltaTime;
-
-        /*if (m_touchDuration > m_durationForAnImpulse)
-        {
-            cubeControlled.UpdateImpulse(ref m_firstTouchPosition, ref m_currentTouchPosition);
-        }*/
-    }
-
-    #endregion
 
     #region TouchFunctions
     void CheckTouch()

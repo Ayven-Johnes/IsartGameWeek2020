@@ -1556,6 +1556,7 @@ MonoBehaviour:
   OpenMenu: {fileID: 8300000, guid: ce2f4755b42726541a90e00eadf9d1c1, type: 3}
   CloseMenu: {fileID: 8300000, guid: cde2c59008ef1894db2bd1bb37a87094, type: 3}
   UpArrow: {fileID: 1779966950}
+  canUp: 1
 --- !u!1 &517421077
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,6 +2600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e220f2516180204d963bfab59b69507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: {fileID: 516644575}
   length: 0
   cameraTarget: {fileID: 972260638}
   cameraTransform: {fileID: 963194228}

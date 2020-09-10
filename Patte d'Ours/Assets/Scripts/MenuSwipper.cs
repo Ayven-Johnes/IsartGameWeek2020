@@ -22,7 +22,7 @@ public class MenuSwipper : MonoBehaviour, IDragHandler, IEndDragHandler
     public GameObject UpArrow = null;
 
 
-    private bool canUp = true;
+    public bool canUp = true;
     private Vector3 Location;
     private AudioSource Source { get { return GetComponent<AudioSource>(); } }
 

@@ -23,6 +23,9 @@ public enum Batiments
     CHEST1,
     CHEST2,
     CHEST3,
+    OPENCHEST1,
+    OPENCHEST2,
+    OPENCHEST3,
     NONE
 };
 
@@ -44,6 +47,8 @@ public class Game : MonoBehaviour
     public GameObject babyBearPrefab = null;
     public float rangeSpawnBear = 30f;
 
+    public List<Transform> beginSpawnBear = new List<Transform>();
+
     public float distanceBetweenEachWaypoint = 50f;
 
     public float GetHearts { get => Hearts; set => Hearts = value; }
@@ -57,6 +62,9 @@ public class Game : MonoBehaviour
 
     public List<GameObject> buildingList = new List<GameObject>();
     public List<Batiments> buildingTypesInList = new List<Batiments>();
+
+
+    public int bridgeLevel = 1;
 
     #endregion
 
@@ -97,7 +105,12 @@ public class Game : MonoBehaviour
             }
             else if (buildingType[i] != Batiments.BRIDGE1 && !AlreadyBuild[i] && i == buildingType.Count)
                 return;
+
         }
+
+        SpawnBearPos(beginSpawnBear[0].position);
+        SpawnBearPos(beginSpawnBear[1].position);
+        SpawnBearPos(beginSpawnBear[2].position);
     }
 
     // Update is called once per frame
@@ -196,24 +209,157 @@ public class Game : MonoBehaviour
 
             if (ice.buildType[i] == Batiments.BRIDGE1)
             {
-                AlreadyBuild[i] = true;
+                if (bridgeLevel == 1)
+                {
+                    AlreadyBuild[i] = true;
 
-                GameObject newBridge = Instantiate(buildingPrefab[9]);
-                newBridge.transform.position = ice.buildLocation[i].position;
-                newBridge.transform.rotation = ice.buildLocation[i].rotation;
+                    GameObject newBridge = Instantiate(buildingPrefab[9]);
+                    newBridge.transform.position = ice.buildLocation[i].position;
+                    newBridge.transform.rotation = ice.buildLocation[i].rotation;
 
-                buildingList.Add(newBridge);
-                buildingTypesInList.Add(Batiments.BRIDGE1);
+                    buildingList.Add(newBridge);
+                    buildingTypesInList.Add(Batiments.BRIDGE1);
+                }
+                else if (bridgeLevel == 2)
+                {
+                    AlreadyBuild[i] = true;
+
+                    GameObject newBridge = Instantiate(buildingPrefab[10]);
+                    newBridge.transform.position = ice.buildLocation[i].position;
+                    newBridge.transform.rotation = ice.buildLocation[i].rotation;
+
+                    buildingList.Add(newBridge);
+                    buildingTypesInList.Add(Batiments.BRIDGE2);
+                }
+                else if (bridgeLevel == 3)
+                {
+                    AlreadyBuild[i] = true;
+
+                    GameObject newBridge = Instantiate(buildingPrefab[11]);
+                    newBridge.transform.position = ice.buildLocation[i].position;
+                    newBridge.transform.rotation = ice.buildLocation[i].rotation;
+
+                    buildingList.Add(newBridge);
+                    buildingTypesInList.Add(Batiments.BRIDGE3);
+                }
             }
         }
     }
 
+    public void GenerateItemUpgrade1(Batiments bat)
+    {
+        switch (bat)
+        {
+            case Batiments.CHEST1:
+                GenerateChest1();
+                break;
+            case Batiments.OPENCHEST1:
+                GenerateChest1();
+                break;
+            case Batiments.SECHOIR1:
+                GenerateSechoir1();
+                break;
+            case Batiments.IGLOO1:
+                GenerateIgloo1();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void GenerateItemUpgrade2(Batiments bat)
+    {
+        switch (bat)
+        {
+            case Batiments.CHEST2:
+                GenerateChest2();
+                break;
+            case Batiments.OPENCHEST2:
+                GenerateChest1();
+                break;
+            case Batiments.SECHOIR2:
+                GenerateSechoir2();
+                break;
+            case Batiments.IGLOO2:
+                GenerateIgloo2();
+                break;
+            case Batiments.BRIDGE2:
+                GenerateBridge2();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void GenerateItemUpgrade3(Batiments bat)
+    {
+        switch (bat)
+        {
+            case Batiments.CHEST3:
+                GenerateChest3();
+                break;
+            case Batiments.OPENCHEST3:
+                GenerateChest1();
+                break;
+            case Batiments.SECHOIR3:
+                GenerateSechoir3();
+                break;
+            case Batiments.IGLOO3:
+                GenerateIgloo3();
+                break;
+            case Batiments.BRIDGE3:
+                GenerateBridge3();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void SpawnBear(GameObject newHouse)
+    {
+        GameObject newBear = null;
+        if (UnityEngine.Random.Range(1, 100) < 25)
+            newBear = Instantiate(babyBearPrefab);
+        else
+            newBear = Instantiate(bearPrefab);
+
+        bool indexIsOk = false; int j = -1;
+        while (!indexIsOk)
+        {
+            j = UnityEngine.Random.Range(0, waypoints.Count);
+            float distance = Vector3.Distance(waypoints[j].position, newHouse.transform.position);
+            if (distance < rangeSpawnBear)
+            {
+                indexIsOk = true;
+            }
+        }
+
+        newBear.transform.position = waypoints[j].position;
+        polarBears.Add(newBear.GetComponent<Bear>());
+    }
+
+    public void SpawnBearPos(Vector3 pos)
+    {
+        GameObject newBear = null;
+        if (UnityEngine.Random.Range(1, 100) < 25)
+            newBear = Instantiate(babyBearPrefab);
+        else
+            newBear = Instantiate(bearPrefab);
+
+        newBear.transform.position = pos;
+        polarBears.Add(newBear.GetComponent<Bear>());
+    }
+
     public void GenerateIgloo1()
     {
+        int tmp = 2;
         int index = -1;
+        int numberGoodLocationFound = 0;
         for (int i = 0; i < buildingType.Count; i++)
         {
-            if (buildingType[i] == Batiments.IGLOO1 && !AlreadyBuild[i])
+            if (buildingType[i] == Batiments.IGLOO1 && !AlreadyBuild[i] && numberGoodLocationFound != tmp)
+                numberGoodLocationFound++;
+            else if (buildingType[i] == Batiments.IGLOO1 && !AlreadyBuild[i])
             {
                 index = i;
                 AlreadyBuild[index] = true;
@@ -224,25 +370,8 @@ public class Game : MonoBehaviour
                 buildingList.Add(newHouse);
                 buildingTypesInList.Add(Batiments.IGLOO1);
 
-                GameObject newBear = null;
-                if (UnityEngine.Random.Range(1, 100) < 25)
-                    newBear = Instantiate(babyBearPrefab);
-                else
-                    newBear = Instantiate(bearPrefab);
-
-                bool indexIsOk = false; int j = -1;
-                while (!indexIsOk)
-                {
-                    j = UnityEngine.Random.Range(0, waypoints.Count);
-                    float distance = Vector3.Distance(waypoints[j].position, newHouse.transform.position);
-                    if (distance < rangeSpawnBear)
-                    {
-                        indexIsOk = true;
-                    }
-                }
-
-                newBear.transform.position = waypoints[j].position;
-                polarBears.Add(newBear.GetComponent<Bear>());
+                SpawnBear(newHouse);
+                
                 return;
             }
             else if (buildingType[i] != Batiments.IGLOO1 && !AlreadyBuild[i] && i == buildingType.Count)
@@ -252,9 +381,13 @@ public class Game : MonoBehaviour
 
     public void GenerateIgloo2()
     {
+        int tmp = 2;
+        int numberGoodLocationFound = 0;
         for (int i = 0; i < buildingList.Count; i++)
         {
-            if (buildingTypesInList[i] == Batiments.IGLOO1)
+            if (buildingType[i] == Batiments.IGLOO1 && numberGoodLocationFound != tmp)
+                numberGoodLocationFound++;
+            else if (buildingTypesInList[i] == Batiments.IGLOO1)
             {
                 GameObject oldBuilding = buildingList[i];
                 GameObject newbuilding = Instantiate(buildingPrefab[1]);
@@ -267,30 +400,22 @@ public class Game : MonoBehaviour
 
                 Destroy(oldBuilding);
 
-                GameObject newBear = Instantiate(bearPrefab);
-
-                bool indexIsOk = false; int j = -1;
-                while (!indexIsOk)
-                {
-                    j = UnityEngine.Random.Range(0, waypoints.Count);
-                    float distance = Vector3.Distance(waypoints[j].position, newbuilding.transform.position);
-                    if (distance < rangeSpawnBear)
-                    {
-                        indexIsOk = true;
-                    }
-                }
-
-                newBear.transform.position = waypoints[j].position;
-                polarBears.Add(newBear.GetComponent<Bear>());
+                SpawnBear(newbuilding);
+                return;
             }
         }
     }
 
     public void GenerateIgloo3()
     {
+        // To delete
+            int tmp = 2;
+        int numberGoodLocationFound = 0; 
         for (int i = 0; i < buildingList.Count; i++)
         {
-            if (buildingTypesInList[i] == Batiments.IGLOO2)
+            if (buildingType[i] == Batiments.IGLOO1 && numberGoodLocationFound != tmp)
+                numberGoodLocationFound++;
+            else if (buildingTypesInList[i] == Batiments.IGLOO2)
             {
                 GameObject oldBuilding = buildingList[i];
                 GameObject newbuilding = Instantiate(buildingPrefab[2]);
@@ -303,22 +428,8 @@ public class Game : MonoBehaviour
 
                 Destroy(oldBuilding);
 
-                GameObject newBear = Instantiate(bearPrefab);
-
-                bool indexIsOk = false; int j = -1;
-                while (!indexIsOk)
-                {
-                    j = UnityEngine.Random.Range(0, waypoints.Count);
-                    float distance = Vector3.Distance(waypoints[j].position, newbuilding.transform.position);
-                    if (distance < rangeSpawnBear)
-                    {
-                        indexIsOk = true;
-                    }
-                }
-
-                newBear.transform.position = waypoints[j].position;
-                polarBears.Add(newBear.GetComponent<Bear>());
-
+                SpawnBear(newbuilding);
+                return;
             }
         }
     }
@@ -362,6 +473,7 @@ public class Game : MonoBehaviour
                 buildingTypesInList[i] = Batiments.SECHOIR2;
 
                 Destroy(oldBuilding);
+                return;
             }
         }
     }
@@ -382,6 +494,7 @@ public class Game : MonoBehaviour
                 buildingTypesInList[i] = Batiments.SECHOIR3;
 
                 Destroy(oldBuilding);
+                return;
             }
         }
     }
@@ -425,6 +538,7 @@ public class Game : MonoBehaviour
                 buildingTypesInList[i] = Batiments.CHEST2;
 
                 Destroy(oldBuilding);
+                return;
             }
         }
     }
@@ -445,12 +559,79 @@ public class Game : MonoBehaviour
                 buildingTypesInList[i] = Batiments.CHEST3;
 
                 Destroy(oldBuilding);
+                return;
+            }
+        }
+    }
+
+    public void GenerateOpenChest1()
+    {
+        int index = -1;
+        for (int i = 0; i < buildingType.Count; i++)
+        {
+            if (buildingType[i] == Batiments.OPENCHEST1 && !AlreadyBuild[i])
+            {
+                index = i;
+                AlreadyBuild[index] = true;
+                GameObject newSechoir = Instantiate(buildingPrefab[12]);
+                newSechoir.transform.position = buildingLocationPossible[index].position;
+                newSechoir.transform.rotation = buildingLocationPossible[index].rotation;
+
+                buildingList.Add(newSechoir);
+                buildingTypesInList.Add(Batiments.OPENCHEST1);
+
+                return;
+            }
+            else if (buildingType[i] != Batiments.OPENCHEST1 && !AlreadyBuild[i] && i == buildingType.Count)
+                return;
+        }
+    }
+
+    public void GenerateOpenChest2()
+    {
+        for (int i = 0; i < buildingList.Count; i++)
+        {
+            if (buildingTypesInList[i] == Batiments.OPENCHEST1)
+            {
+                GameObject oldBuilding = buildingList[i];
+                GameObject newbuilding = Instantiate(buildingPrefab[13]);
+
+                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.rotation = oldBuilding.transform.rotation;
+
+                buildingList[i] = newbuilding;
+                buildingTypesInList[i] = Batiments.OPENCHEST2;
+
+                Destroy(oldBuilding);
+                return;
+            }
+        }
+    }
+
+    public void GenerateOpenChest3()
+    {
+        for (int i = 0; i < buildingList.Count; i++)
+        {
+            if (buildingTypesInList[i] == Batiments.OPENCHEST2)
+            {
+                GameObject oldBuilding = buildingList[i];
+                GameObject newbuilding = Instantiate(buildingPrefab[14]);
+
+                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.rotation = oldBuilding.transform.rotation;
+
+                buildingList[i] = newbuilding;
+                buildingTypesInList[i] = Batiments.OPENCHEST3;
+
+                Destroy(oldBuilding);
+                return;
             }
         }
     }
 
     public void GenerateBridge2()
     {
+        bridgeLevel = 2;
         for (int i = 0; i < buildingList.Count; i++)
         {
             if (buildingTypesInList[i] == Batiments.BRIDGE1)
@@ -471,6 +652,7 @@ public class Game : MonoBehaviour
 
     public void GenerateBridge3()
     {
+        bridgeLevel = 3;
         for (int i = 0; i < buildingList.Count; i++)
         {
             if (buildingTypesInList[i] == Batiments.BRIDGE2)

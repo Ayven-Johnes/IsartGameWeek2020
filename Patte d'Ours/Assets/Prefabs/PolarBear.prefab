@@ -117,7 +117,7 @@ MonoBehaviour:
   movementSpeed: 2
   rotationSpeed: 2
   chanceToDoAction: 80
-  actionLauch: 0
+  isIdle: 0
   needNewWaypoint: 1
   isWalking: 0
 --- !u!195 &2402816890589583437

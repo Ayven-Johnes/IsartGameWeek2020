@@ -49,8 +49,6 @@ public class ShopHandler : MonoBehaviour
 
     private int icebergCounter = 0;
 
-    int tmp = 0;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -150,16 +148,7 @@ public class ShopHandler : MonoBehaviour
 
     public void BuyDecoration(int i)
     {
-        //BuyItems(decorationItems[i]);
-        if (tmp == 0)
-        {
-            game.GenerateOneIceberg();
-        }
-        else if (tmp == 1)
-            game.GenerateOneIceberg();
-
-        Debug.Log("buy item 1");
-        tmp++;
+        BuyItems(decorationItems[i]);
     }
 
     public void BuyIceberg()
@@ -184,7 +173,7 @@ public class ShopHandler : MonoBehaviour
         switch (item.Level)
         {
             case 0:
-                //Faire pop
+                // Generate 
                 break;
             case 9:
                 //Upgrade 1

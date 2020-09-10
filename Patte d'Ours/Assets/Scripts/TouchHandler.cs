@@ -14,9 +14,6 @@ public class TouchHandler : MonoBehaviour
 
     bool IsOnTouch = false;
 
-    private float m_touchDuration = 0f;
-    //private float m_durationForASwipe = 0.25f;
-
     private Vector3 m_firstTouchPosition = Vector3.zero;
     private Vector3 m_currentTouchPosition = Vector3.zero;
     private Vector3 m_previousTouchPosition = Vector3.zero;

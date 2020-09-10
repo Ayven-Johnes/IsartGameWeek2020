@@ -150,22 +150,7 @@ public class ShopHandler : MonoBehaviour
 
     public void BuyDecoration(int i)
     {
-        //BuyItems(decorationItems[i]);
-        Debug.Log("buy item 1");
-        if (tmp == 0)
-        {
-            game.GenerateOpenChest1();
-        }
-        else if (tmp == 1)
-            game.GenerateOpenChest2();
-        else
-        {
-            game.GenerateOpenChest3();
-
-        }
-
-        Debug.Log("buy item 1");
-        tmp++;
+        BuyItems(decorationItems[i]);
     }
 
     public void BuyIceberg()
@@ -190,6 +175,7 @@ public class ShopHandler : MonoBehaviour
         switch (item.Level)
         {
             case 0:
+                // Generate 
                 break;
             case 9:
                 //Upgrade 1

@@ -165,6 +165,7 @@ public class Game : MonoBehaviour
 
     void ChangeWayPoint(Bear bear)
     {
+        int i = 0;
         while (bear.needNewWaypoint)
         {
             int index = UnityEngine.Random.Range(0, waypoints.Count);
@@ -172,6 +173,12 @@ public class Game : MonoBehaviour
 
             if (index != bear.currentIndexWaypoint && distance <= distanceBetweenEachWaypoint)
                 bear.UpdateWaypoint(waypoints[index].position, index);
+
+            if (i > 30)
+            {
+                bear.UpdateWaypoint(waypoints[0].position, index);
+            }
+            i++;
         }
     }
 

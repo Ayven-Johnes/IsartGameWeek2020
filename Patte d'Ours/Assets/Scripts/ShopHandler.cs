@@ -49,6 +49,8 @@ public class ShopHandler : MonoBehaviour
 
     private int icebergCounter = 0;
 
+    int tmp = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -143,11 +145,27 @@ public class ShopHandler : MonoBehaviour
     public void BuyIgloo(int i)
     {
         BuyItems(iglooItems[i]);
+        Debug.Log("buy igloo 1");
     }
 
     public void BuyDecoration(int i)
     {
-        BuyItems(decorationItems[i]);
+        //BuyItems(decorationItems[i]);
+        Debug.Log("buy item 1");
+        if (tmp == 0)
+        {
+            game.GenerateOpenChest1();
+        }
+        else if (tmp == 1)
+            game.GenerateOpenChest2();
+        else
+        {
+            game.GenerateOpenChest3();
+
+        }
+
+        Debug.Log("buy item 1");
+        tmp++;
     }
 
     public void BuyIceberg()
@@ -157,7 +175,8 @@ public class ShopHandler : MonoBehaviour
 
         game.GetHearts -= icebergCost[icebergCounter];
         icebergCounter++;
-        //Faire pop iceberg
+
+        game.GenerateOneIceberg();
     }
 
     private void BuyItems(ShopItems item)
@@ -165,12 +184,12 @@ public class ShopHandler : MonoBehaviour
         if (game.GetHearts < item.Cost)
             return;
 
+ 
         game.GetHearts -= item.Cost;
 
         switch (item.Level)
         {
             case 0:
-                //Faire pop
                 break;
             case 9:
                 //Upgrade 1

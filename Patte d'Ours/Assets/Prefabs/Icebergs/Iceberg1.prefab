@@ -141,8 +141,9 @@ MonoBehaviour:
   WaypointList:
   - {fileID: 1432641557232205363}
   - {fileID: 693206078651231117}
-  buildLocation: []
-  buildType: 
+  buildLocation:
+  - {fileID: 0}
+  buildType: 01000000
   isAlreadyBuild: 
   NumberOfBuildingPossible: 0
 --- !u!1 &6877509105537800258

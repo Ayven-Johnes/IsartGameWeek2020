@@ -3,7 +3,17 @@ guid: b33d99b4b913a8f44addb18c162515bc
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_fire
+    second: {fileID: 2100000, guid: b4970972c8b62fb468245f2ac73a51b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_rock_campfire
+    second: {fileID: 2100000, guid: ce44246f6983e0941a6c85417616a28a, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

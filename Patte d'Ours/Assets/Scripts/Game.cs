@@ -6,17 +6,26 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.Experimental.AI;
 
-public enum Batiments
+public enum ShopBatiments
 {
     CHEST,
-    BRIDGE1,
-    BRIDGE2,
-    BRIDGE3,
     FISHDRYER,
     IGLOO1,
     IGLOO2,
     IGLOO3,
+    BRIDGE,
     ICEBERG,
+    NONE
+}
+
+public enum Batiments
+{
+    BRIDGE1,
+    BRIDGE2,
+    BRIDGE3,
+    IGLOO1,
+    IGLOO2,
+    IGLOO3,
     SECHOIR1,
     SECHOIR2,
     SECHOIR3,
@@ -32,8 +41,11 @@ public enum Batiments
 public class Game : MonoBehaviour
 { 
     [SerializeField]
-    private int     HeartsPerSecond = 0;
+    private int     HeartsPerSecond = 5;
     private float   Hearts = 0;
+
+    [SerializeField]
+    private int[] ClickGain = new int[4];
 
     [SerializeField]
     private Text HeartsDisplay = null;
@@ -41,7 +53,6 @@ public class Game : MonoBehaviour
     private Text HeartsPerSecDisplay = null;
 
     public List<Transform> waypoints = new List<Transform>();
-
     public List<Bear> polarBears = new List<Bear>();
     public GameObject bearPrefab = null;
     public GameObject babyBearPrefab = null;
@@ -53,6 +64,7 @@ public class Game : MonoBehaviour
 
     public float GetHearts { get => Hearts; set => Hearts = value; }
     public int GetHPS { get => HeartsPerSecond; set => HeartsPerSecond = value; }
+
     #region BuildingVars
 
     public List<Transform> buildingLocationPossible = new List<Transform>();
@@ -123,14 +135,12 @@ public class Game : MonoBehaviour
 
 
         // Debugging Logs
-        //Debug.Log((int)Hearts);
-        //Debug.Log(HeartsPerSecond);
     }
 
     private void UpdateHearts()
     {
-        HeartsDisplay.text = "Hearts : " + ((int)Hearts).ToString();
-        HeartsPerSecDisplay.text = "Hearts per second : " + HeartsPerSecond.ToString();
+        HeartsDisplay.text = ((int)Hearts).ToString();
+        HeartsPerSecDisplay.text = HeartsPerSecond.ToString();
 
         Hearts += HeartsPerSecond * Time.deltaTime;
 
@@ -169,9 +179,7 @@ public class Game : MonoBehaviour
     public void GenerateOneIceberg()
     {
         if (numberIcebergGenerate >= icebergLocationPossible.Count)
-        {
             return;
-        }
 
         bool indexIsOk = false; int index = -1;
         while (!indexIsOk)
@@ -262,7 +270,7 @@ public class Game : MonoBehaviour
                 GenerateSechoir1();
                 break;
             case Batiments.IGLOO1:
-                GenerateIgloo1();
+                //GenerateIgloo1();
                 break;
             default:
                 break;
@@ -283,7 +291,7 @@ public class Game : MonoBehaviour
                 GenerateSechoir2();
                 break;
             case Batiments.IGLOO2:
-                GenerateIgloo2();
+                //GenerateIgloo2();
                 break;
             case Batiments.BRIDGE2:
                 GenerateBridge2();
@@ -307,7 +315,7 @@ public class Game : MonoBehaviour
                 GenerateSechoir3();
                 break;
             case Batiments.IGLOO3:
-                GenerateIgloo3();
+                //GenerateIgloo3();
                 break;
             case Batiments.BRIDGE3:
                 GenerateBridge3();
@@ -352,14 +360,13 @@ public class Game : MonoBehaviour
         polarBears.Add(newBear.GetComponent<Bear>());
     }
 
-    public void GenerateIgloo1()
+    public void GenerateIgloo1(int numb)
     {
-        int tmp = 2;
         int index = -1;
         int numberGoodLocationFound = 0;
         for (int i = 0; i < buildingType.Count; i++)
         {
-            if (buildingType[i] == Batiments.IGLOO1 && !AlreadyBuild[i] && numberGoodLocationFound != tmp)
+            if (buildingType[i] == Batiments.IGLOO1 && !AlreadyBuild[i] && numberGoodLocationFound != numb)
                 numberGoodLocationFound++;
             else if (buildingType[i] == Batiments.IGLOO1 && !AlreadyBuild[i])
             {
@@ -381,13 +388,12 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void GenerateIgloo2()
+    public void GenerateIgloo2(int numb)
     {
-        int tmp = 2;
         int numberGoodLocationFound = 0;
         for (int i = 0; i < buildingList.Count; i++)
         {
-            if (buildingType[i] == Batiments.IGLOO1 && numberGoodLocationFound != tmp)
+            if (buildingType[i] == Batiments.IGLOO1 && numberGoodLocationFound != numb)
                 numberGoodLocationFound++;
             else if (buildingTypesInList[i] == Batiments.IGLOO1)
             {
@@ -408,14 +414,12 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void GenerateIgloo3()
+    public void GenerateIgloo3(int numb)
     {
-        // To delete
-            int tmp = 2;
         int numberGoodLocationFound = 0; 
         for (int i = 0; i < buildingList.Count; i++)
         {
-            if (buildingType[i] == Batiments.IGLOO1 && numberGoodLocationFound != tmp)
+            if (buildingType[i] == Batiments.IGLOO1 && numberGoodLocationFound != numb)
                 numberGoodLocationFound++;
             else if (buildingTypesInList[i] == Batiments.IGLOO2)
             {
@@ -716,5 +720,10 @@ public class Game : MonoBehaviour
                 Destroy(oldBuilding);
             }
         }
+    }
+
+    public void Click()
+    {
+        Hearts += ClickGain[numberIcebergGenerate];
     }
 }

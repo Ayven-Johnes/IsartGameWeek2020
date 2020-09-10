@@ -24,6 +24,7 @@ public class ShopHandler : MonoBehaviour
         public  int         Gain = 0;
         public  float       GainMultiplier = 0f;
         public  int         Level = 0;
+        public List<Sprite> LevelSprite = new List<Sprite>();
     }
 
     public Category currentCategory = Category.NONE;
@@ -32,9 +33,9 @@ public class ShopHandler : MonoBehaviour
     private Game game = null;
 
     [SerializeField]
-    private List<ShopItems> iglooItems = new List<ShopItems>();
+    private List<ShopItems> iglooItems = new List<ShopItems>(); // Igloo1/Igloo2/Igloo3
     [SerializeField]
-    private List<ShopItems> decorationItems = new List<ShopItems>();
+    private List<ShopItems> decorationItems = new List<ShopItems>(); //Chest/Bridge/FishDryer
     [SerializeField]
     private List<int> icebergCost = new List<int>();
 
@@ -47,9 +48,11 @@ public class ShopHandler : MonoBehaviour
     [SerializeField]
     private Button          icebergButton = null;
 
-    private int icebergCounter = 0;
+    [SerializeField]
+    private AudioClip ButtonBuySound = null;
 
-    int tmp = 0;
+    private AudioSource Source { get { return GetComponent<AudioSource>(); } }
+    private int icebergCounter = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +64,6 @@ public class ShopHandler : MonoBehaviour
     {
         if (cat != currentCategory)
         {
-            Debug.Log("Not same category");
             foreach (Button bt in iglooButtons)
             {
                 bt.enabled = false;
@@ -79,7 +81,6 @@ public class ShopHandler : MonoBehaviour
             }
             icebergButton.enabled = false;
             icebergButton.gameObject.SetActive(false);
-
 
             switch (cat)
             {
@@ -144,36 +145,50 @@ public class ShopHandler : MonoBehaviour
 
     public void BuyIgloo(int i)
     {
-        BuyItems(iglooItems[i]);
-        Debug.Log("buy igloo 1");
+        ShopBatiments bat = ShopBatiments.NONE;
+        switch(i)
+        {
+            case 0:
+                bat = ShopBatiments.IGLOO1;
+                break;
+            case 1:
+                bat = ShopBatiments.IGLOO2;
+                break;
+            case 2:
+                bat = ShopBatiments.IGLOO3;
+                break;
+            default:
+                break;
+        }
+
+        if(BuyItems(iglooItems[i], bat))
+        {
+            UpdateIglooButtonImage();
+        }
     }
 
     public void BuyDecoration(int i)
     {
-        //BuyItems(decorationItems[i]);
+        ShopBatiments bat = ShopBatiments.NONE;
+        switch (i)
+        {
+            case 0:
+                bat = ShopBatiments.CHEST;
+                break;
+            case 1:
+                bat = ShopBatiments.BRIDGE;
+                break;
+            case 2:
+                bat = ShopBatiments.FISHDRYER;
+                break;
+            default:
+                break;
+        }
 
-        if ( tmp == 0)
+        if(BuyItems(decorationItems[i], bat))
         {
-            game.GenerateSechoir();
-            game.GenerateOneIceberg();
-            game.GenerateOneIceberg();
-            game.GenerateOneIceberg();
+            UpdateDecorationImage(bat);
         }
-        if (tmp == 1)
-        {
-            game.GenerateSechoir();
-        }
-        if (tmp == 2)
-        {
-            game.sechoirLevel = 2;
-            game.GenerateSechoir();
-        }
-        if (tmp == 3)
-        {
-            game.sechoirLevel = 3;
-            game.GenerateSechoir();
-        }
-        tmp++;
     }
 
     public void BuyIceberg()
@@ -181,30 +196,124 @@ public class ShopHandler : MonoBehaviour
         if (game.GetHearts < icebergCost[icebergCounter] || icebergCounter > 2)
             return;
 
+        Source.PlayOneShot(ButtonBuySound);
         game.GetHearts -= icebergCost[icebergCounter];
         icebergCounter++;
 
         game.GenerateOneIceberg();
     }
 
-    private void BuyItems(ShopItems item)
+    private bool BuyItems(ShopItems item, ShopBatiments bat)
     {
-        if (game.GetHearts < item.Cost)
-            return;
+        if (game.GetHearts < item.Cost || bat == ShopBatiments.NONE)
+            return false;
 
  
+        Source.PlayOneShot(ButtonBuySound);
         game.GetHearts -= item.Cost;
 
         switch (item.Level)
         {
             case 0:
                 // Generate 
+                switch (bat)
+                {
+                    case ShopBatiments.IGLOO1:
+                        game.GenerateIgloo1(0);
+                        break;
+                    case ShopBatiments.IGLOO2:
+                        game.GenerateIgloo1(1);
+                        break;
+                    case ShopBatiments.IGLOO3:
+                        game.GenerateIgloo1(2);
+                        break;
+                    case ShopBatiments.CHEST:
+                        game.GenerateChest();
+                        break;
+                    case ShopBatiments.FISHDRYER:
+                        game.GenerateSechoir();
+                        break;
+                }
+                //Faire pop
+                break;
+            case 4:
+                switch (bat)
+                {
+                    case ShopBatiments.CHEST:
+                        game.GenerateChest();
+                        break;
+                    case ShopBatiments.FISHDRYER:
+                        game.GenerateSechoir();
+                        break;
+                }
                 break;
             case 9:
                 //Upgrade 1
+                switch (bat)
+                {
+                    case ShopBatiments.IGLOO1:
+                        game.GenerateIgloo2(0);
+                        break;
+                    case ShopBatiments.IGLOO2:
+                        game.GenerateIgloo2(1);
+                        break;
+                    case ShopBatiments.IGLOO3:
+                        game.GenerateIgloo2(2);
+                        break;
+                    case ShopBatiments.CHEST:
+                        game.chestLevel = 2;
+                        game.GenerateChest();
+                        break;
+                    case ShopBatiments.FISHDRYER:
+                        game.sechoirLevel = 2;
+                        game.GenerateSechoir();
+                        break;
+                    case ShopBatiments.BRIDGE:
+                        game.bridgeLevel = 2;
+                        game.GenerateBridge2();
+                        break;
+                }
+
+                break;
+            case 14:
+                switch (bat)
+                {
+                    case ShopBatiments.CHEST:
+                        game.GenerateChest();
+                        break;
+                    case ShopBatiments.FISHDRYER:
+                        game.GenerateSechoir();
+                        break;
+                }
                 break;
             case 19:
+                switch (bat)
+                {
+                    case ShopBatiments.IGLOO1:
+                        game.GenerateIgloo3(0);
+                        break;
+                    case ShopBatiments.IGLOO2:
+                        game.GenerateIgloo3(1);
+                        break;
+                    case ShopBatiments.IGLOO3:
+                        game.GenerateIgloo3(2);
+                        break;
+                    case ShopBatiments.CHEST:
+                        game.chestLevel = 3;
+                        game.GenerateChest();
+                        break;
+                    case ShopBatiments.FISHDRYER:
+                        game.sechoirLevel = 3;
+                        game.GenerateSechoir();
+                        break;
+                    case ShopBatiments.BRIDGE:
+                        game.bridgeLevel = 3;
+                        game.GenerateBridge3();
+                        break;
+                }
                 //Upgrade 2
+                break;
+            default:
                 break;
         }
 
@@ -221,5 +330,62 @@ public class ShopHandler : MonoBehaviour
         item.Level++;
         item.Gain = (int)(item.Gain * item.GainMultiplier);
         item.Cost = (int)(item.Cost * item.CostMultiplier);
+        return true;
+    }
+
+    void UpdateIglooButtonImage()
+    {
+        int it = 0;
+        foreach (Button bt in iglooButtons)
+        {
+            int level = iglooItems[it].Level;
+            if (level < 10)
+            {
+                bt.image.sprite = iglooItems[it].LevelSprite[0];
+            }
+            else if (level >= 10 && level < 20)
+            {
+                bt.image.sprite = iglooItems[it].LevelSprite[1];
+            }
+            else if (level >= 20)
+            {
+                bt.image.sprite = iglooItems[it].LevelSprite[2];
+            }
+            it++;
+        }
+    }
+
+    void UpdateDecorationImage(ShopBatiments type)
+    {
+        int it = 0;
+        switch (type)
+        {
+            case ShopBatiments.CHEST:
+                it = 0;
+                break;
+            case ShopBatiments.FISHDRYER:
+                it = 2;
+                break;
+            case ShopBatiments.BRIDGE:
+                it = 1;
+                break;
+            default:
+                break;
+        }
+
+        int level = decorationItems[it].Level;
+        Button bt = decorationButtons[it];
+        if (level < 10)
+        {
+            bt.image.sprite = decorationItems[it].LevelSprite[0];
+        }
+        if (level >= 10 && level < 20)
+        {
+            bt.image.sprite = decorationItems[it].LevelSprite[1];
+        }
+        if (level >= 20)
+        {
+            bt.image.sprite = decorationItems[it].LevelSprite[2];
+        }
     }
 }

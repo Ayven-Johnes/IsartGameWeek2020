@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
 
 public class ItemSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-    private Vector3 Location;
+    [SerializeField]
+    private ShopHandler MyShop = null;
     [SerializeField]
     private float percentTreshold = 0.2f;
     [SerializeField]
@@ -14,15 +16,16 @@ public class ItemSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 
     private int CurrentItem = 1;
 
-    [SerializeField]
-    private ShopHandler MyShop = null;
-
-    private Vector3 ResetLocation;
     private bool reset = true;
+    private bool setupReset = false;
+    private Vector3 Location;
+    private Vector3 ResetLocation;
+
     public void Setup()
     {
         Location = transform.position;
-        ResetLocation = Location;
+        if (!setupReset)
+            ResetLocation = Location;
     }
 
     public void Update()

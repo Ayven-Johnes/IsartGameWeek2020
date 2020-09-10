@@ -47,6 +47,8 @@ public class Game : MonoBehaviour
     public GameObject babyBearPrefab = null;
     public float rangeSpawnBear = 30f;
 
+    public List<Transform> beginSpawnBear = new List<Transform>();
+
     public float distanceBetweenEachWaypoint = 50f;
 
     public float GetHearts { get => Hearts; set => Hearts = value; }
@@ -106,7 +108,9 @@ public class Game : MonoBehaviour
 
         }
 
-        GenerateIgloo1();
+        SpawnBearPos(beginSpawnBear[0].position);
+        SpawnBearPos(beginSpawnBear[1].position);
+        SpawnBearPos(beginSpawnBear[2].position);
     }
 
     // Update is called once per frame
@@ -311,6 +315,41 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void SpawnBear(GameObject newHouse)
+    {
+        GameObject newBear = null;
+        if (UnityEngine.Random.Range(1, 100) < 25)
+            newBear = Instantiate(babyBearPrefab);
+        else
+            newBear = Instantiate(bearPrefab);
+
+        bool indexIsOk = false; int j = -1;
+        while (!indexIsOk)
+        {
+            j = UnityEngine.Random.Range(0, waypoints.Count);
+            float distance = Vector3.Distance(waypoints[j].position, newHouse.transform.position);
+            if (distance < rangeSpawnBear)
+            {
+                indexIsOk = true;
+            }
+        }
+
+        newBear.transform.position = waypoints[j].position;
+        polarBears.Add(newBear.GetComponent<Bear>());
+    }
+
+    public void SpawnBearPos(Vector3 pos)
+    {
+        GameObject newBear = null;
+        if (UnityEngine.Random.Range(1, 100) < 25)
+            newBear = Instantiate(babyBearPrefab);
+        else
+            newBear = Instantiate(bearPrefab);
+
+        newBear.transform.position = pos;
+        polarBears.Add(newBear.GetComponent<Bear>());
+    }
+
     public void GenerateIgloo1()
     {
         int tmp = 2;
@@ -331,25 +370,8 @@ public class Game : MonoBehaviour
                 buildingList.Add(newHouse);
                 buildingTypesInList.Add(Batiments.IGLOO1);
 
-                GameObject newBear = null;
-                if (UnityEngine.Random.Range(1, 100) < 25)
-                    newBear = Instantiate(babyBearPrefab);
-                else
-                    newBear = Instantiate(bearPrefab);
-
-                bool indexIsOk = false; int j = -1;
-                while (!indexIsOk)
-                {
-                    j = UnityEngine.Random.Range(0, waypoints.Count);
-                    float distance = Vector3.Distance(waypoints[j].position, newHouse.transform.position);
-                    if (distance < rangeSpawnBear)
-                    {
-                        indexIsOk = true;
-                    }
-                }
-
-                newBear.transform.position = waypoints[j].position;
-                polarBears.Add(newBear.GetComponent<Bear>());
+                SpawnBear(newHouse);
+                
                 return;
             }
             else if (buildingType[i] != Batiments.IGLOO1 && !AlreadyBuild[i] && i == buildingType.Count)
@@ -378,21 +400,7 @@ public class Game : MonoBehaviour
 
                 Destroy(oldBuilding);
 
-                GameObject newBear = Instantiate(bearPrefab);
-
-                bool indexIsOk = false; int j = -1;
-                while (!indexIsOk)
-                {
-                    j = UnityEngine.Random.Range(0, waypoints.Count);
-                    float distance = Vector3.Distance(waypoints[j].position, newbuilding.transform.position);
-                    if (distance < rangeSpawnBear)
-                    {
-                        indexIsOk = true;
-                    }
-                }
-
-                newBear.transform.position = waypoints[j].position;
-                polarBears.Add(newBear.GetComponent<Bear>());
+                SpawnBear(newbuilding);
                 return;
             }
         }
@@ -420,21 +428,7 @@ public class Game : MonoBehaviour
 
                 Destroy(oldBuilding);
 
-                GameObject newBear = Instantiate(bearPrefab);
-
-                bool indexIsOk = false; int j = -1;
-                while (!indexIsOk)
-                {
-                    j = UnityEngine.Random.Range(0, waypoints.Count);
-                    float distance = Vector3.Distance(waypoints[j].position, newbuilding.transform.position);
-                    if (distance < rangeSpawnBear)
-                    {
-                        indexIsOk = true;
-                    }
-                }
-
-                newBear.transform.position = waypoints[j].position;
-                polarBears.Add(newBear.GetComponent<Bear>());
+                SpawnBear(newbuilding);
                 return;
             }
         }

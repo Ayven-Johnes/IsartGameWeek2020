@@ -49,8 +49,6 @@ public class ShopHandler : MonoBehaviour
 
     private int icebergCounter = 0;
 
-    int tmp = 0;
-
     // Start is called before the first frame update
     void Start()
     {

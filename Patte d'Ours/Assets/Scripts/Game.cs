@@ -48,6 +48,10 @@ public class Game : MonoBehaviour
     public List<bool> AlreadyBuild = new List<bool>();
     public List<GameObject> buildingPrefab = new List<GameObject>();
 
+    [SerializeField]
+    private AudioClip ClickerSound = null;
+    private AudioSource Source { get { return GetComponent<AudioSource>(); } }
+
     #endregion
 
     #region IcebergGeneration
@@ -197,6 +201,7 @@ public class Game : MonoBehaviour
 
     public void Click()
     {
+        Source.PlayOneShot(ClickerSound);
         Hearts += ClickGain[numberIcebergGenerate];
     }
 }

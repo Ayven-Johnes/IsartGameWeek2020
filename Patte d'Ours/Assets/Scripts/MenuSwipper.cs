@@ -18,6 +18,8 @@ public class MenuSwipper : MonoBehaviour, IDragHandler, IEndDragHandler
     [SerializeField]
     private AudioClip CloseMenu = null;
 
+    [SerializeField]
+    public GameObject UpArrow = null;
 
 
     private bool canUp = true;
@@ -45,19 +47,18 @@ public class MenuSwipper : MonoBehaviour, IDragHandler, IEndDragHandler
             {
                 newLocation += new Vector3(0, -Screen.height / 2 , 0);
                 canUp = true;
+                Source.PlayOneShot(OpenMenu);
+                UpArrow.SetActive(true);
             }
             else if(percentage < 0 && canUp)
             {
                 newLocation += new Vector3(0, Screen.height / 2, 0);
                 canUp = false;
+                Source.PlayOneShot(CloseMenu);
+                UpArrow.SetActive(false);
             }
 
             StartCoroutine(SmoothMove(transform.position, newLocation, easing, Swiper));
-            if (canUp == false)
-                Source.PlayOneShot(OpenMenu);
-            else
-                Source.PlayOneShot(CloseMenu);
-
             Location = newLocation;
         }
         else

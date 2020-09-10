@@ -24,6 +24,7 @@ public class ShopHandler : MonoBehaviour
         public  int         Gain = 0;
         public  float       GainMultiplier = 0f;
         public  int         Level = 0;
+        public List<Sprite> LevelSprite = new List<Sprite>();
     }
 
     public Category currentCategory = Category.NONE;
@@ -32,9 +33,9 @@ public class ShopHandler : MonoBehaviour
     private Game game = null;
 
     [SerializeField]
-    private List<ShopItems> iglooItems = new List<ShopItems>();
+    private List<ShopItems> iglooItems = new List<ShopItems>(); // Igloo1/Igloo2/Igloo3
     [SerializeField]
-    private List<ShopItems> decorationItems = new List<ShopItems>();
+    private List<ShopItems> decorationItems = new List<ShopItems>(); //Chest/Bridge/FishDryer
     [SerializeField]
     private List<int> icebergCost = new List<int>();
 
@@ -144,25 +145,50 @@ public class ShopHandler : MonoBehaviour
 
     public void BuyIgloo(int i)
     {
-        Batiments bat = Batiments.NONE;
+        ShopBatiments bat = ShopBatiments.NONE;
         switch(i)
         {
+            case 0:
+                bat = ShopBatiments.IGLOO1;
+                break;
+            case 1:
+                bat = ShopBatiments.IGLOO2;
+                break;
+            case 2:
+                bat = ShopBatiments.IGLOO3;
+                break;
             default:
                 break;
         }
 
-        BuyItems(iglooItems[i], bat);
+        if(BuyItems(iglooItems[i], bat))
+        {
+            UpdateIglooButtonImage();
+        }
     }
 
     public void BuyDecoration(int i)
     {
-        Batiments bat = Batiments.NONE;
+        ShopBatiments bat = ShopBatiments.NONE;
         switch (i)
         {
+            case 0:
+                bat = ShopBatiments.CHEST;
+                break;
+            case 1:
+                bat = ShopBatiments.BRIDGE;
+                break;
+            case 2:
+                bat = ShopBatiments.FISHDRYER;
+                break;
             default:
                 break;
         }
-        BuyItems(decorationItems[i], bat);
+
+        if(BuyItems(decorationItems[i], bat))
+        {
+            UpdateDecorationImage(bat);
+        }
     }
 
     public void BuyIceberg()
@@ -176,10 +202,10 @@ public class ShopHandler : MonoBehaviour
         //Faire pop iceberg
     }
 
-    private void BuyItems(ShopItems item, Batiments bat)
+    private bool BuyItems(ShopItems item, ShopBatiments bat)
     {
-        if (game.GetHearts < item.Cost || bat == Batiments.NONE)
-            return;
+        if (game.GetHearts < item.Cost || bat == ShopBatiments.NONE)
+            return false;
 
         Source.PlayOneShot(ButtonBuySound);
         game.GetHearts -= item.Cost;
@@ -187,6 +213,7 @@ public class ShopHandler : MonoBehaviour
         switch (item.Level)
         {
             case 0:
+                // game.Generate(ShopBatiments, )
                 //Faire pop
                 break;
             case 9:
@@ -210,5 +237,62 @@ public class ShopHandler : MonoBehaviour
         item.Level++;
         item.Gain = (int)(item.Gain * item.GainMultiplier);
         item.Cost = (int)(item.Cost * item.CostMultiplier);
+        return true;
+    }
+
+    void UpdateIglooButtonImage()
+    {
+        int it = 0;
+        foreach (Button bt in iglooButtons)
+        {
+            int level = iglooItems[it].Level;
+            if (level < 10)
+            {
+                bt.image.sprite = iglooItems[it].LevelSprite[0];
+            }
+            else if (level >= 10 && level < 20)
+            {
+                bt.image.sprite = iglooItems[it].LevelSprite[1];
+            }
+            else if (level >= 20)
+            {
+                bt.image.sprite = iglooItems[it].LevelSprite[2];
+            }
+            it++;
+        }
+    }
+
+    void UpdateDecorationImage(ShopBatiments type)
+    {
+        int it = 0;
+        switch (type)
+        {
+            case ShopBatiments.CHEST:
+                it = 0;
+                break;
+            case ShopBatiments.FISHDRYER:
+                it = 2;
+                break;
+            case ShopBatiments.BRIDGE:
+                it = 1;
+                break;
+            default:
+                break;
+        }
+
+        int level = decorationItems[it].Level;
+        Button bt = decorationButtons[it];
+        if (level < 10)
+        {
+            bt.image.sprite = decorationItems[it].LevelSprite[0];
+        }
+        if (level >= 10 && level < 20)
+        {
+            bt.image.sprite = decorationItems[it].LevelSprite[1];
+        }
+        if (level >= 20)
+        {
+            bt.image.sprite = decorationItems[it].LevelSprite[2];
+        }
     }
 }

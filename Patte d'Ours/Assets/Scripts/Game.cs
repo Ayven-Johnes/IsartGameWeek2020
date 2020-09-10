@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.Experimental.AI;
 
-public enum Batiments
+public enum ShopBatiments
 {
     CHEST,
     BRIDGE,
@@ -21,7 +21,7 @@ public enum Batiments
 public class Game : MonoBehaviour
 { 
     [SerializeField]
-    private int     HeartsPerSecond = 0;
+    private int     HeartsPerSecond = 5;
     private float   Hearts = 0;
 
     [SerializeField]
@@ -44,7 +44,7 @@ public class Game : MonoBehaviour
     #region BuildingVars
 
     public List<Transform> buildingLocationPossible = new List<Transform>();
-    public List<Batiments> buildingType = new List<Batiments>();
+    public List<ShopBatiments> buildingType = new List<ShopBatiments>();
     public List<bool> AlreadyBuild = new List<bool>();
     public List<GameObject> buildingPrefab = new List<GameObject>();
 
@@ -85,8 +85,8 @@ public class Game : MonoBehaviour
 
     private void UpdateHearts()
     {
-        HeartsDisplay.text = "Hearts : " + ((int)Hearts).ToString();
-        HeartsPerSecDisplay.text = "Hearts per second : " + HeartsPerSecond.ToString();
+        HeartsDisplay.text = ((int)Hearts).ToString();
+        HeartsPerSecDisplay.text = HeartsPerSecond.ToString();
 
         Hearts += HeartsPerSecond * Time.deltaTime;
 
@@ -164,7 +164,7 @@ public class Game : MonoBehaviour
         int index = -1;
         for (int i = 0; i < buildingType.Count; i++)
         {
-            if (buildingType[i] == Batiments.IGLOO1 && !AlreadyBuild[i])
+            if (buildingType[i] == ShopBatiments.IGLOO1 && !AlreadyBuild[i])
             {
                 index = i;
                 AlreadyBuild[index] = true;
@@ -189,7 +189,7 @@ public class Game : MonoBehaviour
                 polarBears.Add(newBear.GetComponent<Bear>());
                 return;
             }
-            else if (buildingType[i] != Batiments.IGLOO1 && !AlreadyBuild[i] && i == buildingType.Count)
+            else if (buildingType[i] != ShopBatiments.IGLOO1 && !AlreadyBuild[i] && i == buildingType.Count)
                 return;
         }
 

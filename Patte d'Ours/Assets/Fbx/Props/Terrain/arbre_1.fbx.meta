@@ -3,7 +3,22 @@ guid: 5c3a2bc2fabf63d4cba928d24972dcf9
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tree_blue
+    second: {fileID: 2100000, guid: 882c0a6815ed6b049b6224e12bc2dca1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tronc
+    second: {fileID: 2100000, guid: e4d3457a043ebb74188a700ef06026d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: white_snow
+    second: {fileID: 2100000, guid: bf4976e27bb92914f9ebfddba99bbaa6, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

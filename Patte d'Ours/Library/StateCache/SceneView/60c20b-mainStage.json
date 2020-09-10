@@ -1,9 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":60.74040222167969,"y":-2.5169031620025636,"z":-34.971500396728519},"rotation":{"x":0.08424439281225205,"y":0.8587431907653809,"z":-0.14990514516830445,"w":0.48274245858192446},"size":81.2370376586914,"orthographic":false}
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":-11.271617889404297,"y":-4.210483551025391,"z":-20.9119873046875},"rotation":{"x":-0.185636505484581,"y":0.7897272109985352,"z":-0.28810355067253115,"w":-0.5088488459587097},"size":44.24020767211914,"orthographic":false}
 >>>>>>> Stashed changes
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":7.927631378173828,"y":36.45794677734375,"z":-72.78994750976563},"rotation":{"x":-0.16149616241455079,"y":0.5503916144371033,"z":-0.11035234481096268,"w":-0.8120160102844238},"size":46.464534759521487,"orthographic":false}
+>>>>>>> baptiste
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":2.341876983642578,"y":0.41719329357147219,"z":4.019248962402344},"rotation":{"x":0.043718937784433368,"y":0.8710942268371582,"z":-0.07888519763946533,"w":0.4828231632709503},"size":1.38559889793396,"orthographic":false}
 >>>>>>> baptiste

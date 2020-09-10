@@ -1,9 +1,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":7.927631378173828,"y":36.45794677734375,"z":-72.78994750976563},"rotation":{"x":-0.16149616241455079,"y":0.5503916144371033,"z":-0.11035234481096268,"w":-0.8120160102844238},"size":46.464534759521487,"orthographic":false}
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":2.341876983642578,"y":0.41719329357147219,"z":4.019248962402344},"rotation":{"x":0.043718937784433368,"y":0.8710942268371582,"z":-0.07888519763946533,"w":0.4828231632709503},"size":1.38559889793396,"orthographic":false}
 >>>>>>> baptiste
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":540.0,"y":-477.5,"z":0.0},"rotation":{"x":0.1867079883813858,"y":0.00589384138584137,"z":-0.0011035760398954154,"w":0.9824113249778748},"size":386.6829528808594,"orthographic":false}
+>>>>>>> johan
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":2974.552001953125,"y":-640.7960205078125,"z":0.0},"rotation":{"x":0.010809964500367642,"y":-0.012002725154161454,"z":0.00014755688607692719,"w":0.9998882412910461},"size":149.19012451171876,"orthographic":false}
 >>>>>>> johan

@@ -25,6 +25,7 @@ public class ShopHandler : MonoBehaviour
         public  float       GainMultiplier = 0f;
         public  int         Level = 0;
         public List<Sprite> LevelSprite = new List<Sprite>();
+        public Text         CostText = null;
     }
 
     public Category currentCategory = Category.NONE;
@@ -38,6 +39,8 @@ public class ShopHandler : MonoBehaviour
     private List<ShopItems> decorationItems = new List<ShopItems>(); //Chest/Bridge/FishDryer
     [SerializeField]
     private List<int> icebergCost = new List<int>();
+    [SerializeField]
+    private Text icebergCostText;
 
     [SerializeField]
     private List<Button>    iglooButtons = new List<Button>();
@@ -49,7 +52,9 @@ public class ShopHandler : MonoBehaviour
     private Button          icebergButton = null;
 
     [SerializeField]
-    private AudioClip ButtonBuySound = null;
+    private AudioClip BuySound = null;
+    [SerializeField]
+    private AudioClip CantBuySound = null;
 
     private AudioSource Source { get { return GetComponent<AudioSource>(); } }
     private int icebergCounter = 0;
@@ -58,6 +63,17 @@ public class ShopHandler : MonoBehaviour
     void Start()
     {
         ChangeShoppingCategory(Category.IGLOO);
+        foreach (ShopItems item in iglooItems)
+        {
+            item.CostText.text = item.Cost.ToString();
+        }
+
+        foreach (ShopItems item in decorationItems)
+        {
+            item.CostText.text = item.Cost.ToString();
+        }
+
+        icebergCostText.text = icebergCost[icebergCounter].ToString();
     }
 
     private void ChangeShoppingCategory(Category cat)
@@ -193,12 +209,24 @@ public class ShopHandler : MonoBehaviour
 
     public void BuyIceberg()
     {
-        if (game.GetHearts < icebergCost[icebergCounter] || icebergCounter > 2)
+        if (icebergCounter > 2)
+        {
+            Source.PlayOneShot(CantBuySound);
             return;
+        }
+        if (game.GetHearts < icebergCost[icebergCounter])
+        {
+            Source.PlayOneShot(CantBuySound);
+            return;
+        }
 
-        Source.PlayOneShot(ButtonBuySound);
+        Source.PlayOneShot(BuySound);
         game.GetHearts -= icebergCost[icebergCounter];
+
         icebergCounter++;
+        if (icebergCounter <= 2)
+            icebergCostText.text = icebergCost[icebergCounter].ToString();
+        //Faire pop iceberg
 
         game.GenerateOneIceberg();
     }
@@ -206,10 +234,12 @@ public class ShopHandler : MonoBehaviour
     private bool BuyItems(ShopItems item, ShopBatiments bat)
     {
         if (game.GetHearts < item.Cost || bat == ShopBatiments.NONE)
+        {
+            Source.PlayOneShot(CantBuySound);
             return false;
+        }
 
- 
-        Source.PlayOneShot(ButtonBuySound);
+        Source.PlayOneShot(BuySound);
         game.GetHearts -= item.Cost;
 
         switch (item.Level)
@@ -330,6 +360,8 @@ public class ShopHandler : MonoBehaviour
         item.Level++;
         item.Gain = (int)(item.Gain * item.GainMultiplier);
         item.Cost = (int)(item.Cost * item.CostMultiplier);
+
+        item.CostText.text = item.Cost.ToString();
         return true;
     }
 

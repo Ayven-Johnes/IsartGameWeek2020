@@ -47,14 +47,14 @@ public class MenuSwipper : MonoBehaviour, IDragHandler, IEndDragHandler
             {
                 newLocation += new Vector3(0, -Screen.height / 2 , 0);
                 canUp = true;
-                Source.PlayOneShot(OpenMenu);
+                Source.PlayOneShot(CloseMenu);
                 UpArrow.SetActive(true);
             }
             else if(percentage < 0 && canUp)
             {
                 newLocation += new Vector3(0, Screen.height / 2, 0);
                 canUp = false;
-                Source.PlayOneShot(CloseMenu);
+                Source.PlayOneShot(OpenMenu);
                 UpArrow.SetActive(false);
             }
 

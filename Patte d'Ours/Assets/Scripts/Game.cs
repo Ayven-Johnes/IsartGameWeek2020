@@ -80,6 +80,10 @@ public class Game : MonoBehaviour
     public int chestLevel = 1;
     public int openChestLevel = 1;
 
+    [SerializeField]
+    private AudioClip ClickerSound = null;
+    private AudioSource Source { get { return GetComponent<AudioSource>(); } }
+
     #endregion
 
     #region IcebergGeneration
@@ -253,12 +257,6 @@ public class Game : MonoBehaviour
 
     public void SpawnBear(GameObject newHouse)
     {
-        GameObject newBear = null;
-        if (UnityEngine.Random.Range(1, 100) < 25)
-            newBear = Instantiate(babyBearPrefab);
-        else
-            newBear = Instantiate(bearPrefab);
-
         bool indexIsOk = false; int j = -1;
         while (!indexIsOk)
         {
@@ -270,6 +268,12 @@ public class Game : MonoBehaviour
             }
         }
 
+        GameObject newBear = null;
+        if (UnityEngine.Random.Range(1, 100) < 25)
+            newBear = Instantiate(babyBearPrefab, waypoints[j].position, new Quaternion());
+        else
+            newBear = Instantiate(bearPrefab, waypoints[j].position, new Quaternion());
+
         newBear.transform.position = waypoints[j].position;
         polarBears.Add(newBear.GetComponent<Bear>());
     }
@@ -278,11 +282,10 @@ public class Game : MonoBehaviour
     {
         GameObject newBear = null;
         if (UnityEngine.Random.Range(1, 100) < 25)
-            newBear = Instantiate(babyBearPrefab);
+            newBear = Instantiate(babyBearPrefab, pos, new Quaternion());
         else
-            newBear = Instantiate(bearPrefab);
-
-        newBear.transform.position = pos;
+            newBear = Instantiate(bearPrefab, pos, new Quaternion());
+        
         polarBears.Add(newBear.GetComponent<Bear>());
     }
 
@@ -650,6 +653,7 @@ public class Game : MonoBehaviour
 
     public void Click()
     {
+        Source.PlayOneShot(ClickerSound);
         Hearts += ClickGain[numberIcebergGenerate];
     }
 }

@@ -21,6 +21,11 @@ public class ItemSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     private Vector3 Location;
     private Vector3 ResetLocation;
 
+    [SerializeField]
+    private AudioClip SwipSound;
+    private AudioSource Source { get { return GetComponent<AudioSource>(); } }
+
+
     public void Setup()
     {
         Location = transform.position;
@@ -70,6 +75,7 @@ public class ItemSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 
             StartCoroutine(SmoothMove(transform.position, newLocation, easing));
             Location = newLocation;
+            Source.PlayOneShot(SwipSound);
         }
         else
         {

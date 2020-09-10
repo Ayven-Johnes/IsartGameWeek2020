@@ -7,18 +7,25 @@ using UnityEngine.UIElements;
 
 public class MenuSwipper : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-    private Vector3 Location;
+    [SerializeField]
+    private ItemSwiper Swiper = null;
     [SerializeField]
     private float percentTreshold = 0.2f;
     [SerializeField]
     private float easing = 0.5f;
-
-    private bool canUp = true;
+    [SerializeField]
+    private AudioClip OpenMenu = null;
+    [SerializeField]
+    private AudioClip CloseMenu = null;
 
     [SerializeField]
-    private ItemSwiper Swiper = null;
+    public GameObject UpArrow = null;
 
-    // Start is called before the first frame update
+
+    public bool canUp = true;
+    private Vector3 Location;
+    private AudioSource Source { get { return GetComponent<AudioSource>(); } }
+
     void Start()
     {
         Location = transform.position;
@@ -40,11 +47,15 @@ public class MenuSwipper : MonoBehaviour, IDragHandler, IEndDragHandler
             {
                 newLocation += new Vector3(0, -Screen.height / 2 , 0);
                 canUp = true;
+                Source.PlayOneShot(OpenMenu);
+                UpArrow.SetActive(true);
             }
             else if(percentage < 0 && canUp)
             {
                 newLocation += new Vector3(0, Screen.height / 2, 0);
                 canUp = false;
+                Source.PlayOneShot(CloseMenu);
+                UpArrow.SetActive(false);
             }
 
             StartCoroutine(SmoothMove(transform.position, newLocation, easing, Swiper));
@@ -65,6 +76,7 @@ public class MenuSwipper : MonoBehaviour, IDragHandler, IEndDragHandler
             transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0f, 1.0f, t));
             yield return null;
         }
+
         it.Setup();
     }
 }

@@ -184,7 +184,7 @@ public class ShopHandler : MonoBehaviour
         switch (item.Level)
         {
             case 0:
-                //Faire pop
+                game.GenerateChest1();
                 break;
             case 9:
                 //Upgrade 1

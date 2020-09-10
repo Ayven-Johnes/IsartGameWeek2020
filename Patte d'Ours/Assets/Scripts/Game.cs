@@ -208,6 +208,66 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void GenerateItemUpgrade1(Batiments bat)
+    {
+        switch (bat)
+        {
+            case Batiments.CHEST1:
+                GenerateChest1();
+                break;
+            case Batiments.SECHOIR1:
+                GenerateSechoir1();
+                break;
+            case Batiments.IGLOO1:
+                GenerateIgloo1();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void GenerateItemUpgrade2(Batiments bat)
+    {
+        switch (bat)
+        {
+            case Batiments.CHEST2:
+                GenerateChest2();
+                break;
+            case Batiments.SECHOIR2:
+                GenerateSechoir2();
+                break;
+            case Batiments.IGLOO2:
+                GenerateIgloo2();
+                break;
+            case Batiments.BRIDGE2:
+                GenerateBridge2();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void GenerateItemUpgrade3(Batiments bat)
+    {
+        switch (bat)
+        {
+            case Batiments.CHEST3:
+                GenerateChest3();
+                break;
+            case Batiments.SECHOIR3:
+                GenerateSechoir3();
+                break;
+            case Batiments.IGLOO3:
+                GenerateIgloo3();
+                break;
+            case Batiments.BRIDGE3:
+                GenerateBridge3();
+                break;
+            default:
+                break;
+        }
+    }
+
     public void GenerateIgloo1()
     {
         int index = -1;

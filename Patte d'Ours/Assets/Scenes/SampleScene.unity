@@ -2743,8 +2743,10 @@ MonoBehaviour:
   distanceBetweenEachWaypoint: 25
   buildingLocationPossible:
   - {fileID: 297285577}
-  buildingType: 09000000
-  AlreadyBuild: 00
+  - {fileID: 1691722820}
+  - {fileID: 1480329619}
+  buildingType: 090000000900000009000000
+  AlreadyBuild: 000000
   buildingPrefab:
   - {fileID: 7680391113372364155, guid: 02abe2d32317c3f49894710b9aaa5ef1, type: 3}
   - {fileID: 1661843435419842784, guid: b6651aa35b4b7a34e86c3f0a276c5e4a, type: 3}
@@ -2764,6 +2766,9 @@ MonoBehaviour:
   buildingList: []
   buildingTypesInList: 
   bridgeLevel: 1
+  sechoirLevel: 1
+  chestLevel: 1
+  openChestLevel: 1
   icebergLocationPossible:
   - {fileID: 82660324}
   - {fileID: 1613001054}

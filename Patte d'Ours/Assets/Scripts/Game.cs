@@ -63,8 +63,10 @@ public class Game : MonoBehaviour
     public List<GameObject> buildingList = new List<GameObject>();
     public List<Batiments> buildingTypesInList = new List<Batiments>();
 
-
     public int bridgeLevel = 1;
+    public int sechoirLevel = 1;
+    public int chestLevel = 1;
+    public int openChestLevel = 1;
 
     #endregion
 
@@ -254,7 +256,7 @@ public class Game : MonoBehaviour
                 GenerateChest1();
                 break;
             case Batiments.OPENCHEST1:
-                GenerateChest1();
+                GenerateOpenChest1();
                 break;
             case Batiments.SECHOIR1:
                 GenerateSechoir1();
@@ -275,7 +277,7 @@ public class Game : MonoBehaviour
                 GenerateChest2();
                 break;
             case Batiments.OPENCHEST2:
-                GenerateChest1();
+                GenerateOpenChest2();
                 break;
             case Batiments.SECHOIR2:
                 GenerateSechoir2();
@@ -299,7 +301,7 @@ public class Game : MonoBehaviour
                 GenerateChest3();
                 break;
             case Batiments.OPENCHEST3:
-                GenerateChest1();
+                GenerateOpenChest3();
                 break;
             case Batiments.SECHOIR3:
                 GenerateSechoir3();
@@ -434,6 +436,57 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void GenerateSechoir()
+    {
+        if (sechoirLevel == 1)
+            GenerateSechoir1();
+        else if (sechoirLevel == 2)
+        {
+            GenerateSechoir1();
+            GenerateSechoir2();
+        }
+        else if (sechoirLevel == 3)
+        {
+            GenerateSechoir1();
+            GenerateSechoir2();
+            GenerateSechoir3();
+        }
+    }
+
+    public void GenerateChest()
+    {
+        if (chestLevel == 1)
+            GenerateChest1();
+        else if (chestLevel == 2)
+        {
+            GenerateChest1();
+            GenerateChest2();
+        }
+        else if (chestLevel == 3)
+        {
+            GenerateChest1();
+            GenerateChest2();
+            GenerateChest3();
+        }
+    }
+
+    public void GenerateOpenChest()
+    {
+        if (openChestLevel == 1)
+            GenerateOpenChest1();
+        else if (openChestLevel == 2)
+        {
+            GenerateOpenChest1();
+            GenerateOpenChest2();
+        }
+        else if (openChestLevel == 3)
+        {
+            GenerateOpenChest1();
+            GenerateOpenChest2();
+            GenerateOpenChest3();
+        }
+    }
+
     public void GenerateSechoir1()
     {
         int index = -1;
@@ -473,7 +526,6 @@ public class Game : MonoBehaviour
                 buildingTypesInList[i] = Batiments.SECHOIR2;
 
                 Destroy(oldBuilding);
-                return;
             }
         }
     }
@@ -494,7 +546,6 @@ public class Game : MonoBehaviour
                 buildingTypesInList[i] = Batiments.SECHOIR3;
 
                 Destroy(oldBuilding);
-                return;
             }
         }
     }
@@ -538,7 +589,6 @@ public class Game : MonoBehaviour
                 buildingTypesInList[i] = Batiments.CHEST2;
 
                 Destroy(oldBuilding);
-                return;
             }
         }
     }
@@ -559,7 +609,6 @@ public class Game : MonoBehaviour
                 buildingTypesInList[i] = Batiments.CHEST3;
 
                 Destroy(oldBuilding);
-                return;
             }
         }
     }
@@ -603,7 +652,6 @@ public class Game : MonoBehaviour
                 buildingTypesInList[i] = Batiments.OPENCHEST2;
 
                 Destroy(oldBuilding);
-                return;
             }
         }
     }
@@ -624,7 +672,6 @@ public class Game : MonoBehaviour
                 buildingTypesInList[i] = Batiments.OPENCHEST3;
 
                 Destroy(oldBuilding);
-                return;
             }
         }
     }

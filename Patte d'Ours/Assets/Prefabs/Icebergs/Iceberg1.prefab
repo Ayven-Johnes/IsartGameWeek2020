@@ -142,8 +142,8 @@ MonoBehaviour:
   - {fileID: 1432641557232205363}
   - {fileID: 693206078651231117}
   buildLocation:
-  - {fileID: 0}
-  buildType: 01000000
+  - {fileID: 693206078651231117}
+  buildType: 09000000
   isAlreadyBuild: 
   NumberOfBuildingPossible: 0
 --- !u!1 &6877509105537800258

@@ -2708,7 +2708,7 @@ MonoBehaviour:
   distanceBetweenEachWaypoint: 25
   buildingLocationPossible:
   - {fileID: 297285577}
-  buildingType: 05000000
+  buildingType: 01000000
   AlreadyBuild: 00
   buildingPrefab:
   - {fileID: 7680391113372364155, guid: 02abe2d32317c3f49894710b9aaa5ef1, type: 3}
@@ -2723,8 +2723,12 @@ MonoBehaviour:
   - {fileID: 5089881967545840955, guid: 76830766a8c64e4409cf969ee37fa17b, type: 3}
   - {fileID: 4134231406303257927, guid: f9c20cd3b9f65cb4887bdf2ea2e9d37e, type: 3}
   - {fileID: 5680072209984968377, guid: 7e7a089e8abde5345b0ee64a24110016, type: 3}
+  - {fileID: 8166209440454680144, guid: a5babd80ef8862c4db5f2409ee41be78, type: 3}
+  - {fileID: 4387540426879271542, guid: 1153d7551b0238643a1899b2dafb78ff, type: 3}
+  - {fileID: 6991956526405773684, guid: 26055e1795f70184abd5726070cd5f18, type: 3}
   buildingList: []
   buildingTypesInList: 
+  bridgeLevel: 1
   icebergLocationPossible:
   - {fileID: 82660324}
   - {fileID: 1613001054}

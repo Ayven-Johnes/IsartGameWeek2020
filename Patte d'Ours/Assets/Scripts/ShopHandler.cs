@@ -258,9 +258,11 @@ public class ShopHandler : MonoBehaviour
                         game.GenerateIgloo1(2);
                         break;
                     case ShopBatiments.CHEST:
+                        game.openChestMaxOnMap++;
                         game.GenerateChest();
                         break;
                     case ShopBatiments.FISHDRYER:
+                        game.sechoirMaxOnMap++;
                         game.GenerateSechoir();
                         break;
                 }
@@ -270,9 +272,11 @@ public class ShopHandler : MonoBehaviour
                 switch (bat)
                 {
                     case ShopBatiments.CHEST:
+                        game.openChestMaxOnMap++;
                         game.GenerateChest();
                         break;
                     case ShopBatiments.FISHDRYER:
+                        game.sechoirMaxOnMap++;
                         game.GenerateSechoir();
                         break;
                 }
@@ -291,11 +295,13 @@ public class ShopHandler : MonoBehaviour
                         game.GenerateIgloo2(2);
                         break;
                     case ShopBatiments.CHEST:
-                        game.chestLevel = 2;
+                        game.openChestLevel = 2;
+                        game.openChestMaxOnMap++;
                         game.GenerateChest();
                         break;
                     case ShopBatiments.FISHDRYER:
                         game.sechoirLevel = 2;
+                        game.sechoirMaxOnMap++;
                         game.GenerateSechoir();
                         break;
                     case ShopBatiments.BRIDGE:
@@ -309,9 +315,11 @@ public class ShopHandler : MonoBehaviour
                 switch (bat)
                 {
                     case ShopBatiments.CHEST:
+                        game.openChestMaxOnMap++;
                         game.GenerateChest();
                         break;
                     case ShopBatiments.FISHDRYER:
+                        game.sechoirMaxOnMap++;
                         game.GenerateSechoir();
                         break;
                 }
@@ -329,11 +337,13 @@ public class ShopHandler : MonoBehaviour
                         game.GenerateIgloo3(2);
                         break;
                     case ShopBatiments.CHEST:
-                        game.chestLevel = 3;
+                        game.openChestLevel = 3;
+                        game.openChestMaxOnMap++;
                         game.GenerateChest();
                         break;
                     case ShopBatiments.FISHDRYER:
                         game.sechoirLevel = 3;
+                        game.sechoirMaxOnMap++;
                         game.GenerateSechoir();
                         break;
                     case ShopBatiments.BRIDGE:

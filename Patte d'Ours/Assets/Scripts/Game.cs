@@ -76,9 +76,14 @@ public class Game : MonoBehaviour
     public List<Batiments> buildingTypesInList = new List<Batiments>();
 
     public int bridgeLevel = 1;
-    public int sechoirLevel = 1;
-    public int chestLevel = 1;
-    public int openChestLevel = 1;
+
+    public int openChestOnMap = 0;
+    public int openChestMaxOnMap = 1;
+    public int openChestLevel = 0;
+
+    public int sechoirLevel = 0;
+    public int sechoirOnMap = 0;
+    public int sechoirMaxOnMap = 2;
 
     [SerializeField]
     private AudioClip ClickerSound = null;
@@ -259,75 +264,88 @@ public class Game : MonoBehaviour
 
             if (ice.buildType[i] == Batiments.CHEST1)
             {
-                if (chestLevel == 1)
+                if (openChestOnMap < openChestMaxOnMap)
                 {
-                    AlreadyBuild[i] = true;
+                    Debug.Log("Generate One Chest at the spawn iceberg");
+                    if (openChestLevel == 1)
+                    {
+                        AlreadyBuild[i] = true;
 
-                    GameObject newBridge = Instantiate(buildingPrefab[6]);
-                    newBridge.transform.position = ice.buildLocation[i].position;
-                    newBridge.transform.rotation = ice.buildLocation[i].rotation;
+                        GameObject newBridge = Instantiate(buildingPrefab[6]);
+                        newBridge.transform.position = ice.buildLocation[i].position;
+                        newBridge.transform.rotation = ice.buildLocation[i].rotation;
+                        openChestOnMap++;
+                        buildingList.Add(newBridge);
+                        buildingTypesInList.Add(Batiments.CHEST1);
+                    }
+                    else if (openChestLevel == 2)
+                    {
+                        AlreadyBuild[i] = true;
 
-                    buildingList.Add(newBridge);
-                    buildingTypesInList.Add(Batiments.CHEST1);
-                }
-                else if (chestLevel == 2)
-                {
-                    AlreadyBuild[i] = true;
+                        GameObject newBridge = Instantiate(buildingPrefab[7]);
+                        newBridge.transform.position = ice.buildLocation[i].position;
+                        newBridge.transform.rotation = ice.buildLocation[i].rotation;
+                        openChestOnMap++;
 
-                    GameObject newBridge = Instantiate(buildingPrefab[7]);
-                    newBridge.transform.position = ice.buildLocation[i].position;
-                    newBridge.transform.rotation = ice.buildLocation[i].rotation;
+                        buildingList.Add(newBridge);
+                        buildingTypesInList.Add(Batiments.CHEST2);
+                    }
+                    else if (openChestLevel == 3)
+                    {
+                        AlreadyBuild[i] = true;
 
-                    buildingList.Add(newBridge);
-                    buildingTypesInList.Add(Batiments.CHEST2);
-                }
-                else if (chestLevel == 3)
-                {
-                    AlreadyBuild[i] = true;
+                        GameObject newBridge = Instantiate(buildingPrefab[8]);
+                        newBridge.transform.position = ice.buildLocation[i].position;
+                        newBridge.transform.rotation = ice.buildLocation[i].rotation;
+                        openChestOnMap++;
 
-                    GameObject newBridge = Instantiate(buildingPrefab[8]);
-                    newBridge.transform.position = ice.buildLocation[i].position;
-                    newBridge.transform.rotation = ice.buildLocation[i].rotation;
-
-                    buildingList.Add(newBridge);
-                    buildingTypesInList.Add(Batiments.CHEST3);
+                        buildingList.Add(newBridge);
+                        buildingTypesInList.Add(Batiments.CHEST3);
+                    }
                 }
             }
 
             if (ice.buildType[i] == Batiments.SECHOIR1)
             {
-                if (sechoirLevel == 1)
+                if (sechoirOnMap < sechoirMaxOnMap)
                 {
-                    AlreadyBuild[i] = true;
+                    if (sechoirLevel == 1)
+                    {
+                        AlreadyBuild[i] = true;
 
-                    GameObject newBridge = Instantiate(buildingPrefab[3]);
-                    newBridge.transform.position = ice.buildLocation[i].position;
-                    newBridge.transform.rotation = ice.buildLocation[i].rotation;
+                        GameObject newBridge = Instantiate(buildingPrefab[3]);
+                        newBridge.transform.position = ice.buildLocation[i].position;
+                        newBridge.transform.rotation = ice.buildLocation[i].rotation;
 
-                    buildingList.Add(newBridge);
-                    buildingTypesInList.Add(Batiments.SECHOIR1);
-                }
-                else if (sechoirLevel == 2)
-                {
-                    AlreadyBuild[i] = true;
+                        sechoirOnMap++;
 
-                    GameObject newBridge = Instantiate(buildingPrefab[4]);
-                    newBridge.transform.position = ice.buildLocation[i].position;
-                    newBridge.transform.rotation = ice.buildLocation[i].rotation;
+                        buildingList.Add(newBridge);
+                        buildingTypesInList.Add(Batiments.SECHOIR1);
+                    }
+                    else if (sechoirLevel == 2)
+                    {
+                        AlreadyBuild[i] = true;
 
-                    buildingList.Add(newBridge);
-                    buildingTypesInList.Add(Batiments.SECHOIR2);
-                }
-                else if (sechoirLevel == 3)
-                {
-                    AlreadyBuild[i] = true;
+                        GameObject newBridge = Instantiate(buildingPrefab[4]);
+                        newBridge.transform.position = ice.buildLocation[i].position;
+                        newBridge.transform.rotation = ice.buildLocation[i].rotation;
+                        sechoirOnMap++;
 
-                    GameObject newBridge = Instantiate(buildingPrefab[5]);
-                    newBridge.transform.position = ice.buildLocation[i].position;
-                    newBridge.transform.rotation = ice.buildLocation[i].rotation;
+                        buildingList.Add(newBridge);
+                        buildingTypesInList.Add(Batiments.SECHOIR2);
+                    }
+                    else if (sechoirLevel == 3)
+                    {
+                        AlreadyBuild[i] = true;
 
-                    buildingList.Add(newBridge);
-                    buildingTypesInList.Add(Batiments.SECHOIR3);
+                        GameObject newBridge = Instantiate(buildingPrefab[5]);
+                        newBridge.transform.position = ice.buildLocation[i].position;
+                        newBridge.transform.rotation = ice.buildLocation[i].rotation;
+                        sechoirOnMap++;
+
+                        buildingList.Add(newBridge);
+                        buildingTypesInList.Add(Batiments.SECHOIR3);
+                    }
                 }
             }
         }
@@ -467,35 +485,18 @@ public class Game : MonoBehaviour
 
     public void GenerateChest()
     {
-        if (chestLevel == 1)
+        if (openChestLevel == 1)
             GenerateChest1();
-        else if (chestLevel == 2)
+        else if (openChestLevel == 2)
         {
             GenerateChest1();
             GenerateChest2();
         }
-        else if (chestLevel == 3)
+        else if (openChestLevel == 3)
         {
             GenerateChest1();
             GenerateChest2();
             GenerateChest3();
-        }
-    }
-
-    public void GenerateOpenChest()
-    {
-        if (openChestLevel == 1)
-            GenerateOpenChest1();
-        else if (openChestLevel == 2)
-        {
-            GenerateOpenChest1();
-            GenerateOpenChest2();
-        }
-        else if (openChestLevel == 3)
-        {
-            GenerateOpenChest1();
-            GenerateOpenChest2();
-            GenerateOpenChest3();
         }
     }
 
@@ -514,6 +515,7 @@ public class Game : MonoBehaviour
 
                 buildingList.Add(newSechoir);
                 buildingTypesInList.Add(Batiments.SECHOIR1);
+                sechoirOnMap++;
 
                 return;
             }
@@ -574,7 +576,7 @@ public class Game : MonoBehaviour
                 GameObject newSechoir = Instantiate(buildingPrefab[6]);
                 newSechoir.transform.position = buildingLocationPossible[index].position;
                 newSechoir.transform.rotation = buildingLocationPossible[index].rotation;
-
+                openChestOnMap++;
                 buildingList.Add(newSechoir);
                 buildingTypesInList.Add(Batiments.CHEST1);
 
@@ -619,69 +621,6 @@ public class Game : MonoBehaviour
 
                 buildingList[i] = newbuilding;
                 buildingTypesInList[i] = Batiments.CHEST3;
-
-                Destroy(oldBuilding);
-            }
-        }
-    }
-
-    public void GenerateOpenChest1()
-    {
-        int index = -1;
-        for (int i = 0; i < buildingType.Count; i++)
-        {
-            if (buildingType[i] == Batiments.OPENCHEST1 && !AlreadyBuild[i])
-            {
-                index = i;
-                AlreadyBuild[index] = true;
-                GameObject newSechoir = Instantiate(buildingPrefab[12]);
-                newSechoir.transform.position = buildingLocationPossible[index].position;
-                newSechoir.transform.rotation = buildingLocationPossible[index].rotation;
-
-                buildingList.Add(newSechoir);
-                buildingTypesInList.Add(Batiments.OPENCHEST1);
-
-                return;
-            }
-            else if (buildingType[i] != Batiments.OPENCHEST1 && !AlreadyBuild[i] && i == buildingType.Count)
-                return;
-        }
-    }
-
-    public void GenerateOpenChest2()
-    {
-        for (int i = 0; i < buildingList.Count; i++)
-        {
-            if (buildingTypesInList[i] == Batiments.OPENCHEST1)
-            {
-                GameObject oldBuilding = buildingList[i];
-                GameObject newbuilding = Instantiate(buildingPrefab[13]);
-
-                newbuilding.transform.position = oldBuilding.transform.position;
-                newbuilding.transform.rotation = oldBuilding.transform.rotation;
-
-                buildingList[i] = newbuilding;
-                buildingTypesInList[i] = Batiments.OPENCHEST2;
-
-                Destroy(oldBuilding);
-            }
-        }
-    }
-
-    public void GenerateOpenChest3()
-    {
-        for (int i = 0; i < buildingList.Count; i++)
-        {
-            if (buildingTypesInList[i] == Batiments.OPENCHEST2)
-            {
-                GameObject oldBuilding = buildingList[i];
-                GameObject newbuilding = Instantiate(buildingPrefab[14]);
-
-                newbuilding.transform.position = oldBuilding.transform.position;
-                newbuilding.transform.rotation = oldBuilding.transform.rotation;
-
-                buildingList[i] = newbuilding;
-                buildingTypesInList[i] = Batiments.OPENCHEST3;
 
                 Destroy(oldBuilding);
             }

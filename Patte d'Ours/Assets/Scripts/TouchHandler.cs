@@ -10,14 +10,18 @@ public class TouchHandler : MonoBehaviour
 {
     public MenuSwipper menu = null;
 
+    public Text debug = null;
+    public Text test = null;
+
     #region TouchVars
 
+    public bool OnMobile = true;
     bool IsOnTouch = false;
 
     private Vector3 m_firstTouchPosition = Vector3.zero;
     private Vector3 m_currentTouchPosition = Vector3.zero;
     private Vector3 m_previousTouchPosition = Vector3.zero;
-    public float length = 0;
+    float length = 0;
     #endregion
 
     #region SwipeVars
@@ -56,13 +60,15 @@ public class TouchHandler : MonoBehaviour
     #region TouchFunctions
     void CheckTouch()
     {
-        if (Input.touchCount > 1)
-            UpdateTouchZoom();
-        else if (Input.touchCount > 0)
-            UpdateTouchSwipe();
-
-
-        CheckInputPC();
+        if (OnMobile)
+        {
+            if (Input.touchCount > 1)
+                UpdateTouchZoom();
+            else if (Input.touchCount > 0)
+                UpdateTouchSwipe();
+        }
+        else 
+            CheckInputPC();
     }
 
     void CheckInputPC()
@@ -146,15 +152,20 @@ public class TouchHandler : MonoBehaviour
         length = UnitVec.magnitude;
         UnitVec = Vector3.Normalize(UnitVec);
 
-        Vector3 nextPos = cameraTransform.position - zoomModifier * UnitVec;
-        Vector3 UnitVec2 = cameraTarget.position - nextPos;
-        length = UnitVec2.magnitude;
+        Vector3 nextPosFront = cameraTransform.position - zoomModifier * UnitVec;
+        Vector3 nextPosBack = cameraTransform.position + zoomModifier * UnitVec;
+
+        Vector3 UnitVec2Front = cameraTarget.position - nextPosFront;
+        Vector3 UnitVec2Back = cameraTarget.position - nextPosBack;
+
+        length = UnitVec2Front.magnitude;
+        float length2 = UnitVec2Back.magnitude;
 
         // Move and check min and max of zoom
         if (touchesPrevPosDifference > touchesCurPosDifference && length < 1000)
-            cameraTransform.position = nextPos;
-        else if (touchesPrevPosDifference < touchesCurPosDifference && length > 50)
-            cameraTransform.position = nextPos;
+            cameraTransform.position = nextPosFront;
+        else if (touchesPrevPosDifference < touchesCurPosDifference && length2 > 50)
+            cameraTransform.position = nextPosBack;
     }
 
     float CalcZoomModifier(ref float touchesPrevPosDifference, ref float touchesCurPosDifference)

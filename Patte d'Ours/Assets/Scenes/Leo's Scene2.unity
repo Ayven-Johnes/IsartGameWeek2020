@@ -6919,11 +6919,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 856551835}
+  debug: {fileID: 0}
+  test: {fileID: 0}
+  OnMobile: 1
   length: 0
   cameraTarget: {fileID: 603125720}
   cameraTransform: {fileID: 1676273916}
   game: {fileID: 2108203146}
-  ZoomSpeedMobile: 0.0001
+  ZoomSpeedMobile: 0.1
   ZoomSpeedPC: 0.3
 --- !u!4 &2108203148
 Transform:

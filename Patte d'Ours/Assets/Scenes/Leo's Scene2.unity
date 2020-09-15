@@ -1610,7 +1610,7 @@ PrefabInstance:
     - target: {fileID: 4082355896472807933, guid: db698e736659297458ccdf478ff8c1e8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4082355896472807933, guid: db698e736659297458ccdf478ff8c1e8,
         type: 3}
@@ -3219,7 +3219,7 @@ PrefabInstance:
     - target: {fileID: 6695309729456358086, guid: 6449541578d39194d94277816da207fa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6695309729456358086, guid: 6449541578d39194d94277816da207fa,
         type: 3}
@@ -6029,6 +6029,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da907882656a96e4a904bf1568d2d5c2, type: 3}
+--- !u!4 &1727052675 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4944259425225510964, guid: da907882656a96e4a904bf1568d2d5c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1727052674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1727052676 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4944259425637938720, guid: da907882656a96e4a904bf1568d2d5c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1727052674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1727052677 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4944259425642424573, guid: da907882656a96e4a904bf1568d2d5c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1727052674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1756294118
 GameObject:
   m_ObjectHideFlags: 0
@@ -7002,9 +7020,9 @@ MonoBehaviour:
   - {fileID: 266109084}
   distanceBetweenEachWaypoint: 50
   buildingLocationPossible:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1727052677}
+  - {fileID: 1727052676}
+  - {fileID: 1727052675}
   IglooLocations: []
   buildingType: 090000000600000006000000
   AlreadyBuild: 000000

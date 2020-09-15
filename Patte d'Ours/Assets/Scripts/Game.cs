@@ -596,7 +596,7 @@ public class Game : MonoBehaviour
                 GameObject oldBuilding = buildingList[i];
                 GameObject newbuilding = Instantiate(buildingPrefab[7]);
 
-                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.position = oldBuilding.transform.position + new Vector3(-0.13f, 0f, 1.67f);
                 newbuilding.transform.rotation = oldBuilding.transform.rotation;
 
                 buildingList[i] = newbuilding;
@@ -616,7 +616,7 @@ public class Game : MonoBehaviour
                 GameObject oldBuilding = buildingList[i];
                 GameObject newbuilding = Instantiate(buildingPrefab[8]);
 
-                newbuilding.transform.position = oldBuilding.transform.position;
+                newbuilding.transform.position = oldBuilding.transform.position - new Vector3(-0.13f, 0f, 1.67f) + new Vector3(-0.26f, 1.69f, -1.68f);
                 newbuilding.transform.rotation = oldBuilding.transform.rotation;
 
                 buildingList[i] = newbuilding;

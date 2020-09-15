@@ -6,6 +6,8 @@ public class Iceberg : MonoBehaviour
 {
     public List<Transform> WaypointList = new List<Transform>();
 
+    public List<Transform> IglooLocations = new List<Transform>();
+
     public List<Transform> buildLocation = new List<Transform>();
     public List<Batiments> buildType = new List<Batiments>();
     public List<bool> isAlreadyBuild = new List<bool>();

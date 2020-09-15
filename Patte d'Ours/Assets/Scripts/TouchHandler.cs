@@ -10,9 +10,6 @@ public class TouchHandler : MonoBehaviour
 {
     public MenuSwipper menu = null;
 
-    public Text debug = null;
-    public Text test = null;
-
     #region TouchVars
 
     public bool OnMobile = true;

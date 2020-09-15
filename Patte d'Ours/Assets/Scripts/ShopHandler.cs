@@ -249,13 +249,13 @@ public class ShopHandler : MonoBehaviour
                 switch (bat)
                 {
                     case ShopBatiments.IGLOO1:
-                        game.GenerateIgloo1(0);
+                        game.GenerateIgloo1(0, item.Level);
                         break;
                     case ShopBatiments.IGLOO2:
-                        game.GenerateIgloo1(1);
+                        game.GenerateIgloo2(1, item.Level);
                         break;
                     case ShopBatiments.IGLOO3:
-                        game.GenerateIgloo1(2);
+                        game.GenerateIgloo3(2, item.Level);
                         break;
                     case ShopBatiments.CHEST:
                         game.openChestMaxOnMap++;
@@ -286,13 +286,13 @@ public class ShopHandler : MonoBehaviour
                 switch (bat)
                 {
                     case ShopBatiments.IGLOO1:
-                        game.GenerateIgloo2(0);
+                        game.GenerateIgloo1(0, item.Level);
                         break;
                     case ShopBatiments.IGLOO2:
-                        game.GenerateIgloo2(1);
+                        game.GenerateIgloo2(1, item.Level);
                         break;
                     case ShopBatiments.IGLOO3:
-                        game.GenerateIgloo2(2);
+                        game.GenerateIgloo3(2, item.Level);
                         break;
                     case ShopBatiments.CHEST:
                         game.openChestLevel = 2;
@@ -328,13 +328,13 @@ public class ShopHandler : MonoBehaviour
                 switch (bat)
                 {
                     case ShopBatiments.IGLOO1:
-                        game.GenerateIgloo3(0);
+                        game.GenerateIgloo1(0, item.Level);
                         break;
                     case ShopBatiments.IGLOO2:
-                        game.GenerateIgloo3(1);
+                        game.GenerateIgloo2(1, item.Level);
                         break;
                     case ShopBatiments.IGLOO3:
-                        game.GenerateIgloo3(2);
+                        game.GenerateIgloo3(2, item.Level);
                         break;
                     case ShopBatiments.CHEST:
                         game.openChestLevel = 3;

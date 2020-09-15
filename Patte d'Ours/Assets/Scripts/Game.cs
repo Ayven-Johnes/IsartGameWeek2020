@@ -68,6 +68,9 @@ public class Game : MonoBehaviour
     #region BuildingVars
 
     public List<Transform> buildingLocationPossible = new List<Transform>();
+
+    public List<Transform> IglooLocations = new List<Transform>();
+
     public List<Batiments> buildingType = new List<Batiments>();
     public List<bool> AlreadyBuild = new List<bool>();
     public List<GameObject> buildingPrefab = new List<GameObject>();
@@ -218,6 +221,9 @@ public class Game : MonoBehaviour
                 waypoints.Add(point);
             }
         }
+
+        for (int i = 0; i < 3; i++)
+            IglooLocations.Add(ice.IglooLocations[i]);
 
         for (int i = 0; i < ice.NumberOfBuildingPossible; i++)
         {
@@ -384,85 +390,78 @@ public class Game : MonoBehaviour
         polarBears.Add(newBear.GetComponent<Bear>());
     }
 
-    public void GenerateIgloo1(int numb)
+    public void GenerateIgloo1(int numb, int level)
     {
-        int index = -1;
-        int numberGoodLocationFound = 0;
-        for (int i = 0; i < buildingType.Count; i++)
+        if (level == 0)
         {
-            if (buildingType[i] == Batiments.IGLOO1 && !AlreadyBuild[i] && numberGoodLocationFound != numb)
-            {
-                numberGoodLocationFound++;
-            }
-            else if (buildingType[i] == Batiments.IGLOO1 && !AlreadyBuild[i])
-            {
-                index = i;
-                AlreadyBuild[index] = true;
-                GameObject newHouse = Instantiate(buildingPrefab[0]);
-                newHouse.transform.position = buildingLocationPossible[index].position;
-                newHouse.transform.rotation = buildingLocationPossible[index].rotation;
-
-                buildingList.Add(newHouse);
-                buildingTypesInList.Add(Batiments.IGLOO1);
-
-                SpawnBear(newHouse);
-
-                return;
-            }
-            else if (buildingType[i] != Batiments.IGLOO1 && !AlreadyBuild[i] && i == buildingType.Count)
-                return;
+            GameObject newHouse = Instantiate(buildingPrefab[0]);
+            newHouse.transform.position = IglooLocations[0].position;
+            newHouse.transform.rotation = IglooLocations[0].rotation;
+            SpawnBear(newHouse);
+        }
+        else if (level == 9)
+        {
+            GameObject newHouse = Instantiate(buildingPrefab[0]);
+            newHouse.transform.position = IglooLocations[1].position;
+            newHouse.transform.rotation = IglooLocations[1].rotation;
+            SpawnBear(newHouse);
+        }
+        else if (level == 19)
+        {
+            GameObject newHouse = Instantiate(buildingPrefab[0]);
+            newHouse.transform.position = IglooLocations[2].position;
+            newHouse.transform.rotation = IglooLocations[2].rotation;
+            SpawnBear(newHouse);
         }
     }
 
-    public void GenerateIgloo2(int numb)
+    public void GenerateIgloo2(int numb, int level)
     {
-        int numberGoodLocationFound = 0;
-        for (int i = 0; i < buildingList.Count; i++)
+        if (level == 0)
         {
-            if (buildingType[i] == Batiments.IGLOO1 && numberGoodLocationFound != numb)
-                numberGoodLocationFound++;
-            else if (buildingTypesInList[i] == Batiments.IGLOO1)
-            {
-                GameObject oldBuilding = buildingList[i];
-                GameObject newbuilding = Instantiate(buildingPrefab[1]);
-
-                newbuilding.transform.position = oldBuilding.transform.position;
-                newbuilding.transform.rotation = oldBuilding.transform.rotation;
-
-                buildingList[i] = newbuilding;
-                buildingTypesInList[i] = Batiments.IGLOO2;
-
-                Destroy(oldBuilding);
-
-                SpawnBear(newbuilding);
-                return;
-            }
+            GameObject newHouse = Instantiate(buildingPrefab[1]);
+            newHouse.transform.position = IglooLocations[0].position;
+            newHouse.transform.rotation = IglooLocations[0].rotation;
+            SpawnBear(newHouse);
+        }
+        else if (level == 9)
+        {
+            GameObject newHouse = Instantiate(buildingPrefab[1]);
+            newHouse.transform.position = IglooLocations[1].position;
+            newHouse.transform.rotation = IglooLocations[1].rotation;
+            SpawnBear(newHouse);
+        }
+        else if (level == 19)
+        {
+            GameObject newHouse = Instantiate(buildingPrefab[1]);
+            newHouse.transform.position = IglooLocations[2].position;
+            newHouse.transform.rotation = IglooLocations[2].rotation;
+            SpawnBear(newHouse);
         }
     }
 
-    public void GenerateIgloo3(int numb)
+    public void GenerateIgloo3(int numb, int level)
     {
-        int numberGoodLocationFound = 0;
-        for (int i = 0; i < buildingList.Count; i++)
+        if (level == 0)
         {
-            if (buildingType[i] == Batiments.IGLOO2 && numberGoodLocationFound != numb)
-                numberGoodLocationFound++;
-            else if (buildingTypesInList[i] == Batiments.IGLOO2)
-            {
-                GameObject oldBuilding = buildingList[i];
-                GameObject newbuilding = Instantiate(buildingPrefab[2]);
-
-                newbuilding.transform.position = oldBuilding.transform.position;
-                newbuilding.transform.rotation = oldBuilding.transform.rotation;
-
-                buildingList[i] = newbuilding;
-                buildingTypesInList[i] = Batiments.IGLOO3;
-
-                Destroy(oldBuilding);
-
-                SpawnBear(newbuilding);
-                return;
-            }
+            GameObject newHouse = Instantiate(buildingPrefab[2]);
+            newHouse.transform.position = IglooLocations[0].position;
+            newHouse.transform.rotation = IglooLocations[0].rotation;
+            SpawnBear(newHouse);
+        }
+        else if (level == 9)
+        {
+            GameObject newHouse = Instantiate(buildingPrefab[2]);
+            newHouse.transform.position = IglooLocations[1].position;
+            newHouse.transform.rotation = IglooLocations[1].rotation;
+            SpawnBear(newHouse);
+        }
+        else if (level == 19)
+        {
+            GameObject newHouse = Instantiate(buildingPrefab[2]);
+            newHouse.transform.position = IglooLocations[2].position;
+            newHouse.transform.rotation = IglooLocations[2].rotation;
+            SpawnBear(newHouse);
         }
     }
 

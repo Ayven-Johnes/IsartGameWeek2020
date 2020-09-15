@@ -275,15 +275,17 @@ MonoBehaviour:
   - {fileID: 6695309729525625468}
   - {fileID: 6695309728779647027}
   - {fileID: 6695309728860630506}
-  IglooLocations: []
+  IglooLocations:
+  - {fileID: 6695309729141707770}
+  - {fileID: 826135654452240280}
+  - {fileID: 1451113161019634373}
   buildLocation:
   - {fileID: 6695309728611187800}
   - {fileID: 6695309729252608293}
-  - {fileID: 6695309729141707770}
   - {fileID: 6695309730124692153}
-  buildType: 09000000060000000300000000000000
+  buildType: 090000000600000000000000
   isAlreadyBuild: 00000000
-  NumberOfBuildingPossible: 4
+  NumberOfBuildingPossible: 3
 --- !u!1 &6695309729525625469
 GameObject:
   m_ObjectHideFlags: 0

@@ -333,15 +333,17 @@ MonoBehaviour:
   - {fileID: 4082355894807643903}
   - {fileID: 4082355896116550601}
   - {fileID: 4082355896320942521}
-  IglooLocations: []
+  IglooLocations:
+  - {fileID: 4082355896246329640}
+  - {fileID: 5722814802721866109}
+  - {fileID: 692005525844861954}
   buildLocation:
   - {fileID: 4082355895506700176}
   - {fileID: 4082355894442188563}
   - {fileID: 4082355894963240779}
-  - {fileID: 4082355896246329640}
-  buildType: 09000000060000000000000003000000
+  buildType: 090000000600000000000000
   isAlreadyBuild: 00000000
-  NumberOfBuildingPossible: 4
+  NumberOfBuildingPossible: 3
 --- !u!1001 &1703830020102733740
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -272,7 +272,6 @@ public class Game : MonoBehaviour
             {
                 if (openChestOnMap < openChestMaxOnMap)
                 {
-                    Debug.Log("Generate One Chest at the spawn iceberg");
                     if (openChestLevel == 1)
                     {
                         AlreadyBuild[i] = true;
@@ -420,22 +419,22 @@ public class Game : MonoBehaviour
         if (level == 0)
         {
             GameObject newHouse = Instantiate(buildingPrefab[1]);
-            newHouse.transform.position = IglooLocations[0].position;
-            newHouse.transform.rotation = IglooLocations[0].rotation;
+            newHouse.transform.position = IglooLocations[3].position;
+            newHouse.transform.rotation = IglooLocations[3].rotation;
             SpawnBear(newHouse);
         }
         else if (level == 9)
         {
             GameObject newHouse = Instantiate(buildingPrefab[1]);
-            newHouse.transform.position = IglooLocations[1].position;
-            newHouse.transform.rotation = IglooLocations[1].rotation;
+            newHouse.transform.position = IglooLocations[4].position;
+            newHouse.transform.rotation = IglooLocations[4].rotation;
             SpawnBear(newHouse);
         }
         else if (level == 19)
         {
             GameObject newHouse = Instantiate(buildingPrefab[1]);
-            newHouse.transform.position = IglooLocations[2].position;
-            newHouse.transform.rotation = IglooLocations[2].rotation;
+            newHouse.transform.position = IglooLocations[5].position;
+            newHouse.transform.rotation = IglooLocations[5].rotation;
             SpawnBear(newHouse);
         }
     }
@@ -445,22 +444,22 @@ public class Game : MonoBehaviour
         if (level == 0)
         {
             GameObject newHouse = Instantiate(buildingPrefab[2]);
-            newHouse.transform.position = IglooLocations[0].position;
-            newHouse.transform.rotation = IglooLocations[0].rotation;
+            newHouse.transform.position = IglooLocations[6].position;
+            newHouse.transform.rotation = IglooLocations[6].rotation;
             SpawnBear(newHouse);
         }
         else if (level == 9)
         {
             GameObject newHouse = Instantiate(buildingPrefab[2]);
-            newHouse.transform.position = IglooLocations[1].position;
-            newHouse.transform.rotation = IglooLocations[1].rotation;
+            newHouse.transform.position = IglooLocations[7].position;
+            newHouse.transform.rotation = IglooLocations[7].rotation;
             SpawnBear(newHouse);
         }
         else if (level == 19)
         {
             GameObject newHouse = Instantiate(buildingPrefab[2]);
-            newHouse.transform.position = IglooLocations[2].position;
-            newHouse.transform.rotation = IglooLocations[2].rotation;
+            newHouse.transform.position = IglooLocations[8].position;
+            newHouse.transform.rotation = IglooLocations[8].rotation;
             SpawnBear(newHouse);
         }
     }

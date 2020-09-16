@@ -217,7 +217,7 @@ MonoBehaviour:
   - {fileID: 4667871602447983734}
   - {fileID: 4667871601926603822}
   buildType: 090000000600000000000000
-  isAlreadyBuild: 00000000
+  isAlreadyBuild: 000000
   NumberOfBuildingPossible: 3
 --- !u!1 &4667871603190063279
 GameObject:

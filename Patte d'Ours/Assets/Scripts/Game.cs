@@ -249,7 +249,7 @@ public class Game : MonoBehaviour
                     AlreadyBuild[i] = true;
 
                     GameObject newBridge = Instantiate(buildingPrefab[10]);
-                    newBridge.transform.position = ice.buildLocation[i].position + new Vector3(0, 31.33f, 0);
+                    newBridge.transform.position = ice.buildLocation[i].position;//+ new Vector3(0, 31.33f, 0);
                     newBridge.transform.rotation = ice.buildLocation[i].rotation;
 
                     buildingList.Add(newBridge);
@@ -635,7 +635,7 @@ public class Game : MonoBehaviour
                 GameObject oldBuilding = buildingList[i];
                 GameObject newbuilding = Instantiate(buildingPrefab[10]);
 
-                newbuilding.transform.position = oldBuilding.transform.position + new Vector3(0, 1.41f, 0);
+                newbuilding.transform.position = oldBuilding.transform.position;
                 newbuilding.transform.rotation = oldBuilding.transform.rotation;
 
                 buildingList[i] = newbuilding;
